@@ -1,6 +1,9 @@
 import { ProductLine, PortfolioItem, FaqItem, AudienceSegment, VolumeDiscount } from '../types';
 import tazaPersonalizadaImg from '../assets/images/taza_personalizada.jpg';
 import remerasPersonalizadasImg from '../assets/images/remeras_personalizadas.jpg';
+import puzzleSublimableImg from '../assets/images/puzzle_sublimable.svg';
+import neopreneSublimableImg from '../assets/images/neoprene_sublimable.svg';
+import impresion3dImg from '../assets/images/impresion_3d.svg';
 
 export const HERO_SHOWCASE_IMG = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDcJMQhLqUi2xTp85XvEghqsI7xT4I8o_L6-bDea2IsoTiL2sSgZTLK8x7jKK5Ia2mNUBjXxOeI0RzL0BHo8unulJM6ZRniycaOo3KfRBrTsy-wz08qhIGVCVExgx2aebBtal9IRyHFkaQx0_KqAapGrg6EmBxHnu4pTAWivkl8e_MhZLTQaoI-Nckkfihh-QdKOrG2I46MZS9fEbCg0EMC90JJawRzZd-9rLz63snm-CayKrGV42Pi';
 
@@ -295,6 +298,122 @@ export const PRODUCT_LINES: ProductLine[] = [
       'Pines y botones personalizados para eventos o coleccionismo',
       'Pedidos disponibles desde 1 sola unidad o en cantidad'
     ]
+  },
+  {
+    id: 'rompecabezas',
+    number: 7,
+    title: 'ROMPECABEZAS SUBLIMABLES',
+    subtitle: 'Polímero blanco · 16 o 24 piezas',
+    accentColor: '#FACC15',
+    badgeBg: 'bg-yellow-400',
+    badgeText: 'text-black',
+    basePrice: 0,
+    quoteOnly: true,
+    imageUrl: puzzleSublimableImg,
+    description: 'Rompecabezas de polímero blanco personalizados con sublimación en toda la superficie. Elegí entre 16 o 24 piezas y compartinos la imagen para cotizar.',
+    tags: [
+      { text: 'Sublimación completa', icon: 'Sparkles', color: 'text-yellow-400' },
+      { text: 'Polímero blanco', icon: 'Puzzle', color: 'text-sky-400' }
+    ],
+    subtypes: [
+      { name: '16 piezas', tag: '12,5 × 12,5 cm', tagColor: 'text-yellow-400' },
+      { name: '24 piezas', tag: '18,7 × 12,5 cm', tagColor: 'text-sky-400' },
+      { name: 'Diseño completo', tag: 'Área total', tagColor: 'text-pink-400' }
+    ],
+    sizes: [
+      '16 piezas · 12,5 × 12,5 cm',
+      '24 piezas · 18,7 × 12,5 cm'
+    ],
+    colors: [{ name: 'Blanco', hex: '#F7F7F2', border: true }],
+    techniques: [
+      { id: 'sublimacion_puzzle', name: 'Sublimación en polímero', tag: 'Full color', desc: 'El diseño se estampa en toda la superficie del rompecabezas.', extraPerUnit: 0 }
+    ],
+    placements: ['Diseño en toda la superficie'],
+    volumeDiscounts: [],
+    whatsappMessage: 'Hola, quiero cotizar un rompecabezas de polímero sublimable.',
+    features: [
+      '16 piezas: 12,5 × 12,5 cm',
+      '24 piezas: 18,7 × 12,5 cm',
+      'Espesor: 3 mm · Color: blanco',
+      'Área de estampado completa',
+      'Material de alta resistencia a golpes y maltrato',
+      'Imágenes resistentes a rayaduras y lavaplatos'
+    ]
+  },
+  {
+    id: 'neoprene-sublimable',
+    number: 8,
+    title: 'NEOPRENE SUBLIMABLE',
+    subtitle: 'Mouse pad · Posavasos · Individual',
+    accentColor: '#38BDF8',
+    badgeBg: 'bg-sky-400',
+    badgeText: 'text-black',
+    basePrice: 0,
+    quoteOnly: true,
+    imageUrl: neopreneSublimableImg,
+    description: 'Artículos de neoprene para personalizar con sublimación: mouse pads, posavasos, individuales de mesa y otras opciones a consultar.',
+    tags: [
+      { text: 'Sublimación personalizada', icon: 'Sparkles', color: 'text-sky-400' },
+      { text: 'Diseño a elección', icon: 'Palette', color: 'text-pink-400' }
+    ],
+    subtypes: [
+      { name: 'Mouse pad', tag: 'Consultar medidas', tagColor: 'text-sky-400' },
+      { name: 'Posavasos', tag: 'Consultar medidas', tagColor: 'text-yellow-400' },
+      { name: 'Individual de mesa', tag: 'Consultar medidas', tagColor: 'text-pink-400' }
+    ],
+    sizes: [
+      'Mouse pad de neoprene',
+      'Posavasos de neoprene',
+      'Individual de mesa de neoprene',
+      'Otro artículo de neoprene'
+    ],
+    colors: [],
+    techniques: [
+      { id: 'sublimacion_neoprene', name: 'Sublimación en neoprene', tag: 'Personalizado', desc: 'Diseño personalizado; medidas y detalles a confirmar al cotizar.', extraPerUnit: 0 }
+    ],
+    volumeDiscounts: [],
+    whatsappMessage: 'Hola, quiero consultar y cotizar artículos de neoprene sublimable.',
+    features: [
+      'Mouse pads, posavasos e individuales de mesa',
+      'Medidas y espesores a consultar',
+      'Diseño personalizado por sublimación',
+      'Otras opciones de neoprene disponibles a consultar'
+    ]
+  },
+  {
+    id: 'impresion-3d',
+    number: 9,
+    title: 'IMPRESIÓN 3D',
+    subtitle: 'Modelos disponibles · Proyectos a medida',
+    accentColor: '#38BDF8',
+    badgeBg: 'bg-sky-400',
+    badgeText: 'text-black',
+    basePrice: 0,
+    quoteOnly: true,
+    imageUrl: impresion3dImg,
+    description: 'Consultanos por algunos modelos ya realizados o por una pieza a medida. Disponibilidad, material, medidas, color y precio se confirman según cada proyecto.',
+    tags: [
+      { text: 'Impresión 3D', icon: 'Printer', color: 'text-sky-400' },
+      { text: 'A medida', icon: 'Box', color: 'text-yellow-400' }
+    ],
+    subtypes: [
+      { name: 'Modelos realizados', tag: 'Consultar disponibilidad', tagColor: 'text-sky-400' },
+      { name: 'Piezas a medida', tag: 'Consultar', tagColor: 'text-yellow-400' },
+      { name: 'Tu idea o referencia', tag: 'Cotización previa', tagColor: 'text-pink-400' }
+    ],
+    sizes: ['Consultar modelos disponibles', 'Proyecto a medida'],
+    colors: [],
+    techniques: [
+      { id: 'impresion_3d', name: 'Impresión 3D', tag: 'A cotizar', desc: 'Los detalles de cada pieza se revisan y cotizan según el proyecto.', extraPerUnit: 0 }
+    ],
+    volumeDiscounts: [],
+    whatsappMessage: 'Hola, quiero consultar por impresión 3D. Busco:',
+    features: [
+      'Algunos modelos ya realizados: consultar disponibilidad',
+      'También podés consultar por piezas a medida',
+      'Material, color, medidas y terminación se confirman según el modelo',
+      'Precio y plazo a confirmar al revisar el proyecto'
+    ]
   }
 ];
 
@@ -482,37 +601,31 @@ export const AUDIENCE_SEGMENTS: AudienceSegment[] = [
 export const FAQ_ITEMS: FaqItem[] = [
   {
     id: 'faq-1',
-    number: '01',
     question: '¿Cuáles son los tiempos de entrega promedio para pedidos personalizados?',
     answerHtml: 'Para pedidos pequeños o muestras de <strong class="text-white">1 a 6 unidades</strong>, el tiempo habitual es de <strong class="text-yellow-400">2 a 4 días hábiles</strong>. Para pedidos en lote o volumen de <strong class="text-white">12 a 500+ unidades</strong>, oscila entre <strong class="text-yellow-400">5 y 8 días hábiles</strong> según la técnica seleccionada. ¿Tienes una fecha límite urgente? Contamos con opción de <strong class="text-sky-400">servicio exprés</strong> bajo previa coordinación.'
   },
   {
     id: 'faq-2',
-    number: '02',
     question: '¿Qué diferencia hay entre DTF Textil, Sublimación, Bordado 3D y Grabado Láser?',
     answerHtml: '<p><strong class="text-yellow-400">• DTF Textil HD:</strong> Ideal para prendas de algodón o poliéster en cualquier color, con degradados e ilustraciones detalladas sin límite de tintas.</p><p class="mt-2"><strong class="text-sky-400">• Sublimación HD:</strong> Ideal para placas de aluminio personalizadas (15×20 y 30×20 cm), mugs y termos cerámicos con calidad fotográfica.</p><p class="mt-2"><strong class="text-pink-400">• Bordado 3D / Computarizado:</strong> Máxima elegancia y relieve premium en gorras trucker, chaquetas, polos y buzos.</p><p class="mt-2"><strong class="text-emerald-400">• Grabado Láser de Fibra:</strong> Grabado permanente e indeleble sobre acero inoxidable, aluminio, madera y cuero sintético.</p>'
   },
   {
     id: 'faq-3',
-    number: '03',
     question: '¿Cuál es la cantidad mínima de pedido (MOQ)?',
     answerHtml: '<strong class="text-white">¡Estampamos desde 1 sola unidad!</strong> No requieres comprar en grandes cantidades para tener tu producto personalizado. Tanto para regalos personales como para proyectos de marca te atendemos con la misma dedicación y calidad.'
   },
   {
     id: 'faq-4',
-    number: '04',
     question: '¿Cómo debo enviar mis archivos y diseños para garantizar la máxima calidad?',
     answerHtml: 'Recomendamos archivos vectoriales en formato <strong class="text-white">AI, PDF o EPS</strong> con tipografías convertidas a curvas, o imágenes en formato <strong class="text-white">PNG en alta resolución</strong> (mínimo 300 DPI) con fondo transparente. Si no tienes tu logo vectorizado, ¡no te preocupes! Revisamos que tu archivo cumpla con las especificaciones técnicas antes de estampar.'
   },
   {
     id: 'faq-5',
-    number: '05',
     question: '¿Hacen envíos a todo el país y cómo se rastrea mi paquete?',
     answerHtml: '<strong class="text-white">Sí, despachamos a cualquier punto de todo el país</strong> mediante transportadoras certificadas (Correo Argentino, Andreani, OCA). Apenas tu orden sea enviada te proporcionamos el <strong class="text-sky-400">número de guía para rastreo en tiempo real</strong>. Todos los pedidos van debidamente embalados y protegidos.'
   },
   {
     id: 'faq-6',
-    number: '06',
     question: '¿Puedo solicitar una muestra física antes de producir todo mi lote?',
     answerHtml: '<strong class="text-white">Totalmente.</strong> Para proyectos de dotación corporativa, merchandising o eventos de gran volumen elaboramos una muestra de aprobación previa o generamos un <strong class="text-pink-400">mockup digital 3D</strong> para que verifiques proporción, colores y posición antes de encender las máquinas de producción masiva.'
   }

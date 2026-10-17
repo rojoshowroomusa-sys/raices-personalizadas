@@ -42,7 +42,10 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
   const [selectedColor, setSelectedColor] = useState<ProductColor>(
     initialColor && product.colors.some((color) => color.name === initialColor.name)
       ? initialColor
-      : product.colors[0] || { name: 'Negro', hex: '#111111' }
+      : product.colors[0] ||
+        (product.quoteOnly
+          ? { name: 'A definir', hex: '#64748B' }
+          : { name: 'Negro', hex: '#111111' })
   );
   const [selectedTechnique, setSelectedTechnique] = useState<ProductTechnique>(
     product.techniques[0] || {
@@ -61,7 +64,7 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
   const [addedSuccess, setAddedSuccess] = useState<boolean>(false);
 
   // Calculate volume discount based on quantity
-  const discounts: VolumeDiscount[] = product.volumeDiscounts || [
+  const discounts: VolumeDiscount[] = product.quoteOnly ? [] : product.volumeDiscounts || [
     { minQty: 1, discountPercent: 0, label: 'Precio base' },
     { minQty: 6, discountPercent: 12, label: '12% OFF' },
     { minQty: 24, discountPercent: 22, label: '22% OFF Mayorista' },
@@ -75,7 +78,9 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
   }, [discounts, quantity]);
 
   // Unit and total price
-  const baseUnitPrice = product.basePrice + (selectedTechnique.extraPerUnit || 0);
+  const baseUnitPrice = product.quoteOnly
+    ? 0
+    : product.basePrice + (selectedTechnique.extraPerUnit || 0);
   const discountMultiplier = 1 - currentDiscount.discountPercent / 100;
   const unitPriceAfterDiscount = Math.round(baseUnitPrice * discountMultiplier);
   const totalPrice = unitPriceAfterDiscount * quantity;
@@ -96,6 +101,7 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
       basePrice: baseUnitPrice,
       unitPrice: unitPriceAfterDiscount,
       discountPercent: currentDiscount.discountPercent,
+      quoteOnly: product.quoteOnly,
       customNote: customNote.trim() || undefined,
     });
 
@@ -147,9 +153,11 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
                   darkMode ? 'text-gray-400' : 'text-gray-500'
                 } hidden sm:block`}
               >
-                {product.id === 'cuadros-aluminio'
-                  ? 'Elegí el formato, fondo y orientación de la placa para armar tu pedido.'
-                  : 'Configura talles, colores, técnicas y arma tu pedido con descuento mayorista.'}
+                {product.quoteOnly
+                  ? 'Armá tu selección y confirmá precio y disponibilidad por WhatsApp.'
+                  : product.id === 'cuadros-aluminio'
+                    ? 'Elegí el formato, fondo y orientación de la placa para armar tu pedido.'
+                    : 'Configura talles, colores, técnicas y arma tu pedido con descuento mayorista.'}
               </p>
             </div>
           </div>
@@ -204,7 +212,7 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
 
               {/* Price From badge */}
               <div className="absolute bottom-3 right-3 bg-yellow-400 text-black px-3 py-1 rounded-full font-extrabold text-xs shadow-md">
-                Desde {formatPriceARS(product.basePrice)}
+                {product.quoteOnly ? 'Precio a cotizar' : `Desde ${formatPriceARS(product.basePrice)}`}
               </div>
             </div>
 
@@ -243,7 +251,11 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
                   <span className="w-2 h-2 rounded-full bg-yellow-400" />
                   {product.id === 'cuadros-aluminio'
                     ? '1. Formato de placa:'
-                    : '1. Medida / Formato / Talle:'}
+                    : product.id === 'neoprene-sublimable'
+                      ? '1. Artículo de neoprene:'
+                      : product.id === 'impresion-3d'
+                        ? '1. Tipo de proyecto:'
+                      : '1. Medida / Formato / Talle:'}
                 </span>
                 <span className="text-yellow-400 font-bold">{selectedSize}</span>
               </div>
@@ -314,13 +326,20 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
                   <span className="w-2 h-2 rounded-full bg-pink-500" />
                   {product.id === 'cuadros-aluminio'
                     ? '2. Fondo de la placa:'
-                    : '2. Color de Prenda / Base:'}
+                    : product.id === 'neoprene-sublimable'
+                      ? '2. Diseño:'
+                      : product.id === 'impresion-3d'
+                        ? '2. Material y color:'
+                      : product.id === 'rompecabezas'
+                        ? '2. Base del rompecabezas:'
+                      : '2. Color de Prenda / Base:'}
                 </span>
                 <span className="text-pink-400 font-bold">{selectedColor.name}</span>
               </div>
 
-              <div className="flex flex-wrap gap-2.5">
-                {product.colors.map((color) => {
+              {product.colors.length > 0 ? (
+                <div className="flex flex-wrap gap-2.5">
+                  {product.colors.map((color) => {
                   const isSelected = selectedColor.name === color.name;
                   return (
                     <button
@@ -347,8 +366,15 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
                       <span className="font-medium text-[11px]">{color.name}</span>
                     </button>
                   );
-                })}
-              </div>
+                  })}
+                </div>
+              ) : (
+                <p className="rounded-xl border border-gray-700/70 bg-black/10 p-3 text-xs text-gray-400">
+                  {product.id === 'impresion-3d'
+                    ? 'El material y el color se confirman según el modelo y la disponibilidad.'
+                    : 'El diseño y sus colores se definen al cotizar el artículo.'}
+                </p>
+              )}
             </div>
 
             {/* 3. Technique Selector */}
@@ -356,7 +382,7 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
               <div className="flex items-center justify-between text-xs">
                 <span className="font-extrabold uppercase tracking-wider flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-sky-400" />
-                  3. Técnica de Personalización:
+                  {product.id === 'impresion-3d' ? '3. Proceso:' : '3. Técnica de Personalización:'}
                 </span>
                 <span className="text-sky-400 font-bold">{selectedTechnique.name}</span>
               </div>
@@ -426,7 +452,9 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
                   <Layers className="w-3.5 h-3.5 text-yellow-400" />
                   {product.id === 'cuadros-aluminio'
                     ? '4. Orientación de la placa:'
-                    : '4. Posición / Ubicación del Estampado:'}
+                    : product.id === 'rompecabezas'
+                      ? '4. Área de estampado:'
+                      : '4. Posición / Ubicación del Estampado:'}
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {product.placements.map((plc) => {
@@ -464,7 +492,9 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
                     Cantidad a Pedir:
                   </span>
                   <span className="text-[11px] text-gray-400">
-                    Descuento automático por volumen mayorista
+                    {product.quoteOnly
+                      ? 'El precio se confirma al cotizar por WhatsApp.'
+                      : 'Descuento automático por volumen mayorista'}
                   </span>
                 </div>
 
@@ -498,50 +528,54 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
               </div>
 
               {/* Quick Presets */}
-              <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                <span className="text-[10px] text-gray-400 font-semibold uppercase mr-1">
-                  Atajos:
-                </span>
-                {quantityPresets.map((qty) => (
-                  <button
-                    key={qty}
-                    type="button"
-                    onClick={() => setQuantity(qty)}
-                    className={`px-2.5 py-1 rounded-md text-[11px] font-mono font-bold transition-all ${
-                      quantity === qty
-                        ? 'bg-yellow-400 text-black shadow-sm'
-                        : darkMode
-                        ? 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-                        : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-100'
-                    }`}
-                  >
-                    {qty}u
-                  </button>
-                ))}
-              </div>
+              {!product.quoteOnly && (
+                <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                  <span className="text-[10px] text-gray-400 font-semibold uppercase mr-1">
+                    Atajos:
+                  </span>
+                  {quantityPresets.map((qty) => (
+                    <button
+                      key={qty}
+                      type="button"
+                      onClick={() => setQuantity(qty)}
+                      className={`px-2.5 py-1 rounded-md text-[11px] font-mono font-bold transition-all ${
+                        quantity === qty
+                          ? 'bg-yellow-400 text-black shadow-sm'
+                          : darkMode
+                            ? 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                            : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      {qty}u
+                    </button>
+                  ))}
+                </div>
+              )}
 
               {/* Volume scale display */}
-              <div
-                className={`p-3 rounded-xl border text-xs flex items-center justify-between ${
-                  currentDiscount.discountPercent > 0
-                    ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
-                    : darkMode
-                    ? 'bg-gray-800/40 border-gray-800 text-gray-400'
-                    : 'bg-white border-gray-200 text-gray-600'
-                }`}
-              >
-                <div className="flex items-center gap-2">
-                  <TrendingDown className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>
-                    <strong>Escala activa:</strong> {currentDiscount.label}
-                  </span>
+              {!product.quoteOnly && (
+                <div
+                  className={`p-3 rounded-xl border text-xs flex items-center justify-between ${
+                    currentDiscount.discountPercent > 0
+                      ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
+                      : darkMode
+                        ? 'bg-gray-800/40 border-gray-800 text-gray-400'
+                        : 'bg-white border-gray-200 text-gray-600'
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <TrendingDown className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>
+                      <strong>Escala activa:</strong> {currentDiscount.label}
+                    </span>
+                  </div>
+                  {totalSavings > 0 && (
+                    <span className="font-bold text-emerald-400">
+                      Ahorras {formatPriceARS(totalSavings)}
+                    </span>
+                  )}
                 </div>
-                {totalSavings > 0 && (
-                  <span className="font-bold text-emerald-400">
-                    Ahorras {formatPriceARS(totalSavings)}
-                  </span>
-                )}
-              </div>
+              )}
             </div>
 
             {/* 6. Custom Note / Logo Text */}
@@ -550,12 +584,20 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
                 htmlFor="custom-note"
                 className="text-[11px] font-bold uppercase text-gray-400 flex items-center gap-1.5"
               >
-                <span>Texto a estampar, nombre o detalles del logo (Opcional):</span>
+                <span>
+                  {product.id === 'impresion-3d'
+                    ? 'Contanos qué pieza buscás o compartí una referencia (Opcional):'
+                    : 'Texto a estampar, nombre o detalles del logo (Opcional):'}
+                </span>
               </label>
               <input
                 id="custom-note"
                 type="text"
-                placeholder="Ej: Logo de mi empresa en el frente / Nombre 'Lautaro' en espalda"
+                placeholder={
+                  product.id === 'impresion-3d'
+                    ? 'Ej: modelo que te interesa, uso, medidas aproximadas o una idea'
+                    : "Ej: Logo de mi empresa en el frente / Nombre 'Lautaro' en espalda"
+                }
                 value={customNote}
                 onChange={(e) => setCustomNote(e.target.value)}
                 className={`w-full px-3.5 py-2.5 rounded-xl border text-xs focus:outline-none focus:border-yellow-400 transition-colors ${
@@ -577,24 +619,37 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
           {/* Price Breakdown */}
           <div className="flex items-baseline gap-3 w-full sm:w-auto justify-between sm:justify-start">
             <div>
-              <span className="text-[10px] uppercase font-bold tracking-wider text-gray-400 block">
-                Total por {quantity} {quantity === 1 ? 'unidad' : 'unidades'}:
-              </span>
-              <div className="flex items-baseline gap-2">
-                <span className="text-2xl sm:text-3xl font-black font-mono text-[#FACC15]">
-                  {formatPriceARS(totalPrice)}
-                </span>
-                {totalSavings > 0 && (
-                  <span className="text-xs text-gray-400 line-through font-mono">
-                    {formatPriceARS(originalTotalPrice)}
+              {product.quoteOnly ? (
+                <>
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-gray-400 block">
+                    Total por {quantity} {quantity === 1 ? 'unidad' : 'unidades'}:
                   </span>
-                )}
-              </div>
+                  <span className="text-lg font-black text-[#FACC15]">A cotizar</span>
+                </>
+              ) : (
+                <>
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-gray-400 block">
+                    Total por {quantity} {quantity === 1 ? 'unidad' : 'unidades'}:
+                  </span>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-2xl sm:text-3xl font-black font-mono text-[#FACC15]">
+                      {formatPriceARS(totalPrice)}
+                    </span>
+                    {totalSavings > 0 && (
+                      <span className="text-xs text-gray-400 line-through font-mono">
+                        {formatPriceARS(originalTotalPrice)}
+                      </span>
+                    )}
+                  </div>
+                </>
+              )}
             </div>
 
-            <div className="text-right sm:text-left text-[11px] text-gray-400">
-              <span>{formatPriceARS(unitPriceAfterDiscount)} c/u</span>
-            </div>
+            {!product.quoteOnly && (
+              <div className="text-right sm:text-left text-[11px] text-gray-400">
+                <span>{formatPriceARS(unitPriceAfterDiscount)} c/u</span>
+              </div>
+            )}
           </div>
 
           {/* Action Buttons */}

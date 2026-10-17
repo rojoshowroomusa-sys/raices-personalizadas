@@ -43,7 +43,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ darkMode }) => {
             }`}
           >
             PREGUNTAS{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FACC15] via-amber-300 to-yellow-500">
+            <span className="text-[#FACC15]">
               FRECUENTES
             </span>{' '}
             <span className="text-[#0EA5E9] text-stroke-sm">(FAQ)</span>
@@ -76,16 +76,13 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ darkMode }) => {
                   type="button"
                   onClick={() => toggleItem(item.id)}
                   aria-expanded={isOpen}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
+                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer"
                 >
                   <span
                     className={`text-sm sm:text-base font-bold flex items-center gap-3 ${
                       darkMode ? 'text-white' : 'text-gray-900'
                     }`}
                   >
-                    <span className="w-7 h-7 rounded-lg bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 flex items-center justify-center font-mono text-xs font-extrabold shrink-0">
-                      {item.number}
-                    </span>
                     <span>{item.question}</span>
                   </span>
 

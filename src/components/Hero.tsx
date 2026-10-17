@@ -70,7 +70,7 @@ export const Hero: React.FC<HeroProps> = ({ darkMode }) => {
               <span className={darkMode ? 'text-white' : 'text-slate-900'}>
                 CATÁLOGO DE <br />
               </span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FACC15] via-amber-300 to-yellow-500 underline decoration-[#0EA5E9] decoration-wavy decoration-2">
+              <span className="text-[#FACC15] underline decoration-[#0EA5E9] decoration-wavy decoration-2">
                 PRODUCTOS
               </span>{' '}
               <br />

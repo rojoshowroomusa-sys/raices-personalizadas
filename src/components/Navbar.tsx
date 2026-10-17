@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Printer, Menu, X, Sun, Moon, ShoppingBag } from 'lucide-react';
+import { Sparkles, Printer, Menu, X, Sun, Moon, ShoppingBag, ChevronDown } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
@@ -27,15 +27,19 @@ export const Navbar: React.FC<NavbarProps> = ({
     { label: 'Placas', href: '/placas-aluminio-personalizadas' },
     { label: 'Gorras', href: '/gorras-personalizadas' },
   ];
+  const primaryNavLinks = navLinks.filter((link) =>
+    ['Catálogo', 'Envíos Nacionales', 'Preguntas Frecuentes', 'Contacto'].includes(link.label)
+  );
+  const moreNavLinks = navLinks.filter((link) => !primaryNavLinks.includes(link));
 
   return (
     <>
       {/* Top Announcement Bar */}
       <aside className="bg-gradient-to-r from-[#0EA5E9] via-[#EC4899] to-[#FACC15] py-1.5 px-4 text-black text-xs font-bold tracking-wider uppercase text-center shadow-md select-none">
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-2 sm:px-4">
-          <span className="flex items-center gap-2 text-[11px] sm:text-xs">
+        <div className="max-w-7xl mx-auto flex min-w-0 justify-between items-center px-2 sm:px-4">
+          <span className="flex min-w-0 flex-1 items-center gap-2 text-[11px] sm:text-xs">
             <Sparkles className="w-4 h-4 text-black shrink-0" />
-            <span className="truncate">Envíos seguros a nivel nacional • Calidad garantizada en cada producto</span>
+            <span className="min-w-0 truncate">Envíos seguros a nivel nacional • Calidad garantizada en cada producto</span>
           </span>
           <span className="hidden md:inline-flex items-center gap-3 font-extrabold text-[11px]">
             <span>¡Atención directa y personalizada!</span>
@@ -56,9 +60,9 @@ export const Navbar: React.FC<NavbarProps> = ({
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           {/* Logo Branding */}
-          <a href={isDetailPage ? '/' : '#'} className="flex items-center gap-3 group">
+          <a href={isDetailPage ? '/' : '#'} className="flex items-center gap-2 sm:gap-3 group">
             <div className="relative">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-tr from-[#FACC15] via-[#EC4899] to-[#0EA5E9] p-0.5 flex items-center justify-center shadow-glow-yellow group-hover:scale-105 transition-transform duration-200">
+              <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-tr from-[#FACC15] via-[#EC4899] to-[#0EA5E9] p-0.5 flex items-center justify-center shadow-glow-yellow group-hover:scale-105 transition-transform duration-200">
                 <div
                   className={`w-full h-full rounded-[10px] flex items-center justify-center ${
                     darkMode ? 'bg-[#0E1522]' : 'bg-slate-900'
@@ -69,9 +73,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
             </div>
             <div className="flex flex-col">
-              <span className="text-xl sm:text-2xl font-black tracking-tight leading-none">
+              <span className="text-base min-[400px]:text-lg sm:text-2xl font-black tracking-tight leading-none">
                 RAÍCES{' '}
-                <span className="font-script text-[#FACC15] text-2xl sm:text-3xl tracking-normal inline-block transform -rotate-2">
+                <span className="font-script text-[#FACC15] text-base min-[400px]:text-lg sm:text-3xl tracking-normal inline-block transform -rotate-2">
                   Personalizaciones
                 </span>
               </span>
@@ -88,18 +92,48 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-7 text-xs xl:text-sm font-semibold">
-            {navLinks.map((link) => (
+          <nav className="hidden 2xl:flex items-center gap-4 text-xs font-semibold">
+            {primaryNavLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className={`whitespace-nowrap transition-colors duration-150 hover:text-[#FACC15] ${
+                className={`whitespace-nowrap rounded-sm transition-colors duration-150 hover:text-[#FACC15] ${
                   darkMode ? 'text-gray-300' : 'text-gray-700'
                 }`}
               >
                 {link.label}
               </a>
             ))}
+            <details className="group relative">
+              <summary
+                className={`flex cursor-pointer list-none items-center gap-1 whitespace-nowrap rounded-sm transition-colors hover:text-[#FACC15] ${
+                  darkMode ? 'text-gray-300' : 'text-gray-700'
+                }`}
+              >
+                Más
+                <ChevronDown className="h-3.5 w-3.5 transition-transform group-open:rotate-180" />
+              </summary>
+              <div
+                className={`absolute right-0 top-full z-50 mt-3 w-52 rounded-xl border p-2 shadow-xl ${
+                  darkMode
+                    ? 'border-gray-700 bg-[#101722] text-gray-200'
+                    : 'border-gray-200 bg-white text-gray-800'
+                }`}
+              >
+                {moreNavLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={(event) => {
+                      event.currentTarget.closest('details')?.removeAttribute('open');
+                    }}
+                    className="block rounded-lg px-3 py-2.5 transition-colors hover:bg-yellow-400/10 hover:text-yellow-400"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </details>
           </nav>
 
           {/* Action Area: Cart, Theme Toggle & WhatsApp */}
@@ -149,7 +183,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               href="https://wa.me/5492216268594?text=Hola%20Raíces%20Personalizaciones,%20quiero%20información%20sobre%20un%20proyecto"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-emerald-500 text-black font-extrabold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm shadow-md hover:shadow-emerald-500/30 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 whitespace-nowrap"
+              className="hidden sm:inline-flex items-center gap-2 bg-[#25D366] hover:bg-emerald-500 text-black font-extrabold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm shadow-md hover:shadow-emerald-500/30 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 whitespace-nowrap"
             >
               <WhatsAppIcon className="w-4 h-4 text-black" />
               <span className="hidden sm:inline font-mono">221 626 8594</span>
@@ -160,10 +194,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`lg:hidden p-2 rounded-xl ${
+              className={`2xl:hidden p-2 rounded-xl ${
                 darkMode ? 'text-gray-300 hover:bg-gray-800' : 'text-gray-700 hover:bg-gray-100'
               }`}
-              aria-label="Abrir menú"
+              aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -173,7 +208,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Mobile dropdown menu */}
         {mobileMenuOpen && (
           <div
-            className={`lg:hidden px-4 pt-2 pb-6 space-y-2 border-t ${
+            className={`2xl:hidden px-4 pt-2 pb-6 space-y-2 border-t ${
               darkMode ? 'bg-[#0E1522] border-gray-800' : 'bg-white border-gray-200'
             }`}
           >

@@ -32,6 +32,7 @@ export interface ProductLine {
   whatsappMessage: string;
   features: string[];
   basePrice: number;
+  quoteOnly?: boolean;
   imageUrl?: string;
   sizes: string[];
   sizeGroups?: { label: string; sizes: string[] }[];
@@ -55,6 +56,7 @@ export interface CartItem {
   basePrice: number;
   unitPrice: number;
   discountPercent: number;
+  quoteOnly?: boolean;
   customNote?: string;
 }
 
@@ -81,7 +83,6 @@ export interface PortfolioItem {
 
 export interface FaqItem {
   id: string;
-  number: string;
   question: string;
   answerHtml: string;
 }

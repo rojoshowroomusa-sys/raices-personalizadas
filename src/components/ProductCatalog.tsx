@@ -22,8 +22,11 @@ import {
   SlidersHorizontal,
   ChevronRight,
   TrendingDown,
+  Puzzle,
+  MousePointer2,
+  Printer,
 } from 'lucide-react';
-import { PRODUCT_LINES } from '../data/products';
+import { PRODUCT_LINES, WHATSAPP_PHONE } from '../data/products';
 import { ProductLine } from '../types';
 import { ProductConfigModal } from './ProductConfigModal';
 import { formatPriceARS } from '../context/CartContext';
@@ -56,6 +59,9 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
     { id: 'bolsos', label: 'Bolsos & Tulas', icon: ShoppingBag },
     { id: 'cuadros-aluminio', label: 'Cuadros Metal', icon: Frame },
     { id: 'souvenirs', label: 'Souvenirs', icon: Gift },
+    { id: 'rompecabezas', label: 'Rompecabezas', icon: Puzzle },
+    { id: 'neoprene-sublimable', label: 'Neoprene', icon: MousePointer2 },
+    { id: 'impresion-3d', label: 'Impresión 3D', icon: Printer },
   ];
 
   const filteredProducts = useMemo(() => {
@@ -77,6 +83,12 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
         return <Frame className="w-6 h-6 mb-1 text-sky-400" />;
       case 'souvenirs':
         return <Gift className="w-6 h-6 mb-1 text-pink-400" />;
+      case 'rompecabezas':
+        return <Puzzle className="w-6 h-6 mb-1 text-yellow-400" />;
+      case 'neoprene-sublimable':
+        return <MousePointer2 className="w-6 h-6 mb-1 text-sky-400" />;
+      case 'impresion-3d':
+        return <Printer className="w-6 h-6 mb-1 text-sky-400" />;
       default:
         return <Sparkles className="w-6 h-6 mb-1 text-yellow-400" />;
     }
@@ -113,13 +125,17 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
           </h2>
 
           <p className={`text-sm sm:text-base ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            Selecciona talles, colores y técnicas. Configura cada prenda o souvenir y envía tu orden
-            detallada directamente a WhatsApp con descuentos automáticos por cantidad.
+            Elegí las variantes y técnicas de cada producto. Consultá precios y descuentos por
+            cantidad, y enviá tu pedido detallado directamente a WhatsApp.
           </p>
         </div>
 
         {/* Category Filters Bar */}
-        <div className="flex items-center justify-start sm:justify-center overflow-x-auto pb-4 mb-8 sm:mb-12 gap-2 no-scrollbar">
+        <div
+          role="group"
+          aria-label="Filtrar catálogo por categoría"
+          className="flex items-center justify-start sm:justify-center overflow-x-auto pb-4 mb-8 sm:mb-12 gap-2 lg:flex-wrap lg:overflow-visible lg:justify-center"
+        >
           {filterTabs.map((tab) => {
             const Icon = tab.icon;
             const isSelected = selectedFilter === tab.id;
@@ -128,6 +144,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                 key={tab.id}
                 type="button"
                 onClick={() => setSelectedFilter(tab.id)}
+                aria-pressed={isSelected}
                 className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold whitespace-nowrap transition-all duration-200 ${
                   isSelected
                     ? 'bg-yellow-400 text-black shadow-glow-yellow scale-105'
@@ -148,7 +165,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
           {filteredProducts.map((prod) => (
             <article
               key={prod.id}
-              className={`rounded-3xl border transition-all duration-300 overflow-hidden flex flex-col group shadow-xl hover:-translate-y-1 ${
+              className={`rounded-2xl border transition-all duration-300 overflow-hidden flex flex-col group shadow-lg hover:-translate-y-1 hover:shadow-xl ${
                 darkMode
                   ? 'bg-[#141C2B] border-gray-800 hover:border-yellow-400/60'
                   : 'bg-slate-50 border-gray-200 hover:border-yellow-400'
@@ -181,9 +198,11 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                 </div>
 
                 <div className="text-right">
-                  <span className="text-[10px] text-gray-400 uppercase font-bold block">Desde</span>
+                  <span className="text-[10px] text-gray-400 uppercase font-bold block">
+                    {prod.quoteOnly ? 'Precio' : 'Desde'}
+                  </span>
                   <span className="font-mono font-black text-sm text-[#FACC15]">
-                    {formatPriceARS(prod.basePrice)}
+                    {prod.quoteOnly ? 'A cotizar' : formatPriceARS(prod.basePrice)}
                   </span>
                 </div>
               </div>
@@ -206,10 +225,10 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
                 {/* Wholesale Discount Badge */}
-                <div className="absolute top-3 left-3 bg-emerald-500 text-slate-950 px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider shadow-md flex items-center gap-1">
+                {!prod.quoteOnly && <div className="absolute top-3 left-3 bg-emerald-500 text-slate-950 px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider shadow-md flex items-center gap-1">
                   <TrendingDown className="w-3 h-3" />
                   <span>Descuentos por Cantidad</span>
-                </div>
+                </div>}
 
                 {/* Subtypes mini tag */}
                 <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white">
@@ -217,24 +236,26 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                   {prod.sizeGroups ? `${prod.sizeGroups.length} rangos de talles` : `${prod.sizes.length} talles/formatos disponibles`}
                   </span>
                   <span className="text-[11px] font-semibold bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10">
-                    {prod.colors.length} colores
+                    {prod.colors.length > 0 ? `${prod.colors.length} colores` : 'Diseño a definir'}
                   </span>
                 </div>
               </div>
 
               {/* 3 Subtypes Visual Showcase */}
               <div
-                className={`p-3.5 grid grid-cols-3 gap-2 border-b ${
+                className={`px-3.5 py-4 grid grid-cols-3 border-b ${
                   darkMode ? 'bg-[#0E1522] border-gray-800' : 'bg-white border-gray-100'
                 }`}
               >
                 {prod.subtypes.map((sub, sIdx) => (
                   <div
                     key={sIdx}
-                    className={`p-2.5 rounded-xl border text-center flex flex-col items-center justify-between transition-transform duration-200 ${
-                      darkMode
-                        ? 'bg-[#141C2B] border-gray-800 hover:border-yellow-400/40'
-                        : 'bg-slate-50 border-gray-200 hover:border-yellow-400'
+                    className={`min-w-0 px-2 text-center flex flex-col items-center justify-center gap-1.5 ${
+                      sIdx > 0
+                        ? darkMode
+                          ? 'border-l border-gray-800'
+                          : 'border-l border-gray-200'
+                        : ''
                     }`}
                   >
                     <div className="flex items-center justify-center">
@@ -272,26 +293,40 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                     Variantes de Color:
                   </span>
                   <div className="flex items-center gap-1.5 flex-wrap">
-                    {prod.colors.map((c) => (
-                      <span
-                        key={c.name}
-                        className={`w-4 h-4 rounded-full border shadow-sm ${
-                          c.border ? 'border-gray-400' : 'border-white/20'
-                        }`}
-                        style={{ backgroundColor: c.hex }}
-                        title={c.name}
-                      />
-                    ))}
-                    <span className="text-[10px] text-gray-400 font-medium pl-1">
-                      +{prod.colors.length} opciones
-                    </span>
+                    {prod.colors.length > 0 ? (
+                      <>
+                        {prod.colors.map((c) => (
+                          <span
+                            key={c.name}
+                            className={`w-4 h-4 rounded-full border shadow-sm ${
+                              c.border ? 'border-gray-400' : 'border-white/20'
+                            }`}
+                            style={{ backgroundColor: c.hex }}
+                            title={c.name}
+                          />
+                        ))}
+                        <span className="text-[10px] text-gray-400 font-medium pl-1">
+                          {prod.colors.length} opción{prod.colors.length === 1 ? '' : 'es'}
+                        </span>
+                      </>
+                    ) : (
+                      <span className="text-[10px] text-gray-400 font-medium">
+                        {prod.id === 'impresion-3d'
+                          ? 'Material y color a consultar'
+                          : 'Diseño a definir al cotizar'}
+                      </span>
+                    )}
                   </div>
                 </div>
 
                 {/* Sizes pills */}
                 <div className="space-y-1.5">
                   <span className="text-[10px] font-bold uppercase text-gray-400 block tracking-wider">
-                    Medidas / Formatos:
+                    {prod.id === 'neoprene-sublimable'
+                      ? 'Productos disponibles:'
+                      : prod.id === 'impresion-3d'
+                        ? 'Tipo de proyecto:'
+                        : 'Medidas / Formatos:'}
                   </span>
                   <div className="flex flex-wrap gap-1">
                     {prod.sizeGroups
@@ -334,7 +369,9 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                       Envíos a todo el país
                     </span>
                   </a>
-                  <span className="text-emerald-400 font-bold">Desde 1 unidad</span>
+                  <span className="text-emerald-400 font-bold">
+                    {prod.quoteOnly ? 'Consultar cantidad' : 'Desde 1 unidad'}
+                  </span>
                 </div>
 
                 {/* Action CTAs: Order Configurator + Specs */}
@@ -458,16 +495,17 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                     darkMode ? 'text-white' : 'text-gray-900'
                   }`}
                 >
-                  ¿TIENES UN PROYECTO O PEDIDO ESPECIAL?
+                  ¿NO ENCONTRASTE LO QUE BUSCABAS?
                 </h3>
                 <p
                   className={`text-sm leading-relaxed ${
                     darkMode ? 'text-gray-300' : 'text-gray-600'
                   }`}
                 >
-                  Si no encuentras el producto en el catálogo, ¡lo desarrollamos! Corte láser,
-                  parches bordados, buzos especiales, bolsas en tiradas masivas o acabados exclusivos
-                  para marcas.
+                  El catálogo no incluye todo lo que podemos evaluar. Contanos qué necesitás, para
+                  qué lo vas a usar, la cantidad y las medidas aproximadas si las sabés. Si tenés
+                  una foto, dibujo o referencia, compartila por WhatsApp. Revisamos disponibilidad
+                  y opciones, y te cotizamos aunque el producto no aparezca en esta página.
                 </p>
               </div>
             </div>
@@ -475,7 +513,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
             <div className="flex flex-col sm:flex-row items-center gap-5 w-full lg:w-auto shrink-0 justify-center">
               <div className="text-center sm:text-right">
                 <span className="text-xs font-bold text-[#FACC15] tracking-widest uppercase block">
-                  Atención Inmediata
+                  Consultas por WhatsApp
                 </span>
                 <p
                   className={`text-2xl sm:text-3xl font-extrabold tracking-tight font-mono ${
@@ -488,12 +526,14 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
               </div>
 
               <a
-                href="https://wa.me/5492216268594?text=Hola%20tengo%20un%20proyecto%20especial%20y%20quiero%20cotizar"
+                href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(
+                  'Hola, estoy buscando un producto que no encontré en el catálogo. Quiero consultar por:'
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="py-3.5 px-6 rounded-2xl bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-amber-400 hover:to-yellow-400 text-black font-extrabold text-sm uppercase tracking-wider shadow-lg transition-all transform hover:scale-[1.02] whitespace-nowrap"
               >
-                Cotizar Proyecto Especial
+                Consultar por WhatsApp
               </a>
             </div>
           </article>

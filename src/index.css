@@ -11,6 +11,11 @@
     --brand-pink: #EC4899;
     --brand-greenWhatsApp: #25D366;
   }
+
+  :focus-visible {
+    outline: 2px solid var(--brand-yellow);
+    outline-offset: 3px;
+  }
 }
 
 .font-script {

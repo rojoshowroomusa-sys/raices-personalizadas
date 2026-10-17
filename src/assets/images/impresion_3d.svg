@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" fill="none">
+  <rect width="1200" height="750" rx="30" fill="#080C12"/>
+  <path d="M0 590h1200v160H0z" fill="#0F1724"/>
+  <path d="M74 88h1052" stroke="#263344" stroke-width="2"/>
+  <text x="76" y="65" fill="#FACC15" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="5">RAÍCES · IMPRESIÓN 3D</text>
+
+  <g stroke="#38BDF8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M342 567V178h492v389"/>
+    <path d="M342 178h492"/>
+    <path d="M342 274h492"/>
+    <path d="M382 274v293m412-293v293"/>
+  </g>
+
+  <g fill="#182335" stroke="#45546A" stroke-width="5">
+    <rect x="392" y="290" width="392" height="261" rx="16"/>
+    <rect x="414" y="522" width="348" height="25" rx="12"/>
+    <rect x="452" y="207" width="88" height="46" rx="10" fill="#FACC15" stroke="#FACC15"/>
+  </g>
+
+  <g stroke="#FACC15" stroke-width="8" stroke-linecap="round">
+    <path d="M496 254v72"/>
+    <path d="M476 326h40"/>
+  </g>
+  <path d="m468 342 28 34 28-34" fill="#FACC15"/>
+
+  <g stroke="#0EA5E9" stroke-width="6">
+    <path d="M443 486h235"/>
+    <path d="M460 462h201"/>
+    <path d="M478 438h166"/>
+    <path d="M494 414h134"/>
+    <path d="M511 390h100"/>
+    <path d="M527 366h67"/>
+  </g>
+  <path d="M460 484h201l-17-32H477l-17 32Z" fill="#38BDF8" fill-opacity=".18"/>
+
+  <g transform="translate(874 206)">
+    <circle cx="92" cy="92" r="83" fill="#141C2B" stroke="#45546A" stroke-width="8"/>
+    <circle cx="92" cy="92" r="43" fill="#080C12" stroke="#FACC15" stroke-width="8"/>
+    <path d="M92 9v40m83 43h-40M92 175v-40M9 92h40" stroke="#38BDF8" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <g fill="#A9B8CA" font-family="Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="2">
+    <text x="874" y="419">MODELOS DISPONIBLES</text>
+    <text x="874" y="450">PIEZAS A MEDIDA</text>
+  </g>
+  <path d="M874 386h225" stroke="#263344" stroke-width="2"/>
+  <circle cx="850" cy="414" r="5" fill="#FACC15"/>
+  <circle cx="850" cy="445" r="5" fill="#38BDF8"/>
+
+  <text x="76" y="676" fill="#F8FAFC" font-family="Arial,sans-serif" font-size="33" font-weight="800" letter-spacing="2">CONTANOS QUÉ QUERÉS CREAR</text>
+  <text x="76" y="714" fill="#9CA3AF" font-family="Arial,sans-serif" font-size="18" letter-spacing="1">Modelos, materiales, medidas y cotización: consultanos por WhatsApp.</text>
+</svg>

@@ -140,13 +140,15 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Totals
   const totalItems = items.reduce((acc, it) => acc + it.quantity, 0);
+  const pricedItems = items.filter((item) => !item.quoteOnly);
+  const quoteItems = items.filter((item) => item.quoteOnly);
 
-  const subtotalBeforeDiscounts = items.reduce(
+  const subtotalBeforeDiscounts = pricedItems.reduce(
     (acc, it) => acc + it.basePrice * it.quantity,
     0
   );
 
-  const totalFinalPrice = items.reduce(
+  const totalFinalPrice = pricedItems.reduce(
     (acc, it) => acc + it.unitPrice * it.quantity,
     0
   );
@@ -174,26 +176,36 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return (
           `*${idx + 1}. ${item.title.toUpperCase()}*\n` +
           `   • *Formato / Talle:* ${item.size}\n` +
-          `   • *Color:* ${item.color.name}\n` +
+          `   • *${item.productId === 'impresion-3d' ? 'Material / color' : 'Color'}:* ${item.color.name}\n` +
           `   • *Técnica:* ${item.technique}\n` +
           (item.placement ? `   • *Ubicación:* ${item.placement}\n` : '') +
           `   • *Cantidad:* ${item.quantity} ${item.quantity === 1 ? 'unidad' : 'unidades'}\n` +
-          `   • *Precio unitario:* ${formatPriceARS(item.unitPrice)}${discountText}\n` +
-          `   • *Subtotal:* ${formatPriceARS(itemTotal)}` +
+          (item.quoteOnly
+            ? '   • *Precio:* A cotizar por WhatsApp\n   • *Subtotal:* A cotizar'
+            : `   • *Precio unitario:* ${formatPriceARS(item.unitPrice)}${discountText}\n` +
+              `   • *Subtotal:* ${formatPriceARS(itemTotal)}`) +
           (item.customNote ? `\n   • *Detalle:* ${item.customNote}` : '')
         );
       })
       .join('\n\n');
 
-    const totalsSection =
-      `\n━━━━━━━━━━━━━━━━━━━━━━\n` +
-      `📦 *Total de Prendas / Artículos:* ${totalItems}\n` +
-      (totalSavings > 0
-        ? `🎁 *Ahorro Mayorista Aplicado:* ${formatPriceARS(totalSavings)}\n`
-        : '') +
-      `💰 *VALOR TOTAL ESTIMADO:* ${formatPriceARS(totalFinalPrice)}\n` +
-      `━━━━━━━━━━━━━━━━━━━━━━\n\n` +
-      `¿Me confirman tiempos de producción y cómo les envío los archivos gráficos para iniciar el armado de muestra? ¡Muchas gracias!`;
+    const totalsSection = quoteItems.length > 0
+      ? `\n━━━━━━━━━━━━━━━━━━━━━━\n` +
+        `📦 *Total de artículos:* ${totalItems}\n` +
+        `📝 *Artículos a cotizar:* ${quoteItems.reduce((total, item) => total + item.quantity, 0)}\n` +
+        (pricedItems.length > 0
+          ? `💰 *Subtotal de artículos con precio:* ${formatPriceARS(totalFinalPrice)}\n`
+          : '') +
+        `━━━━━━━━━━━━━━━━━━━━━━\n\n` +
+        `¿Me confirman el precio y los tiempos de producción de los artículos a cotizar? ¡Muchas gracias!`
+      : `\n━━━━━━━━━━━━━━━━━━━━━━\n` +
+        `📦 *Total de Prendas / Artículos:* ${totalItems}\n` +
+        (totalSavings > 0
+          ? `🎁 *Ahorro Mayorista Aplicado:* ${formatPriceARS(totalSavings)}\n`
+          : '') +
+        `💰 *VALOR TOTAL ESTIMADO:* ${formatPriceARS(totalFinalPrice)}\n` +
+        `━━━━━━━━━━━━━━━━━━━━━━\n\n` +
+        `¿Me confirman tiempos de producción y cómo les envío los archivos gráficos para iniciar el armado de muestra? ¡Muchas gracias!`;
 
     const fullMessage = [
       greeting,

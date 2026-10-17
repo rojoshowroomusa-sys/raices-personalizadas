@@ -41,6 +41,13 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ darkMode }) => {
 
   if (!isCartOpen) return null;
 
+  const hasQuoteItems = items.some((item) => item.quoteOnly);
+  const hasPricedItems = items.some((item) => !item.quoteOnly);
+  const quoteItemCount = items.reduce(
+    (total, item) => total + (item.quoteOnly ? item.quantity : 0),
+    0
+  );
+
   const handleSendWhatsApp = () => {
     const url = generateWhatsAppOrderUrl();
     window.open(url, '_blank');
@@ -285,16 +292,16 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ darkMode }) => {
                           <div className="text-right">
                             <div className="flex items-baseline gap-1.5 justify-end">
                               <span className="font-mono font-extrabold text-sm text-[#FACC15]">
-                                {formatCurrency(itemTotal)}
+                                {item.quoteOnly ? 'A cotizar' : formatCurrency(itemTotal)}
                               </span>
-                              {item.discountPercent > 0 && (
+                              {!item.quoteOnly && item.discountPercent > 0 && (
                                 <span className="text-[10px] text-gray-500 line-through font-mono">
                                   {formatCurrency(originalTotal)}
                                 </span>
                               )}
                             </div>
                             <span className="text-[10px] text-gray-400 block font-mono">
-                              {formatCurrency(item.unitPrice)} c/u
+                              {item.quoteOnly ? 'Precio a confirmar' : `${formatCurrency(item.unitPrice)} c/u`}
                             </span>
                           </div>
                         </div>
@@ -416,10 +423,17 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ darkMode }) => {
             >
               {/* Financial Breakdown */}
               <div className="space-y-1.5 text-xs">
-                <div className="flex justify-between text-gray-400">
-                  <span>Subtotal prendas:</span>
+                {hasPricedItems && <div className="flex justify-between text-gray-400">
+                  <span>{hasQuoteItems ? 'Subtotal con precio:' : 'Subtotal prendas:'}</span>
                   <span className="font-mono">{formatCurrency(subtotalBeforeDiscounts)}</span>
-                </div>
+                </div>}
+
+                {hasQuoteItems && (
+                  <div className="flex justify-between text-sky-400">
+                    <span>Artículos a cotizar:</span>
+                    <span>{quoteItemCount}</span>
+                  </div>
+                )}
 
                 {totalSavings > 0 && (
                   <div className="flex justify-between text-emerald-400 font-bold">
@@ -434,14 +448,18 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ darkMode }) => {
                 <div className="flex justify-between items-baseline pt-2 border-t border-gray-700/50">
                   <div>
                     <span className="font-black uppercase text-sm sm:text-base">
-                      Total Estimado:
+                      {hasQuoteItems ? 'Subtotal estimado:' : 'Total Estimado:'}
                     </span>
                     <span className="text-[10px] text-gray-400 block">
-                      Incluye personalización y acabados
+                      {hasQuoteItems
+                        ? 'Los artículos a cotizar no están incluidos'
+                        : 'Incluye personalización y acabados'}
                     </span>
                   </div>
                   <span className="text-2xl sm:text-3xl font-black font-mono text-[#FACC15]">
-                    {formatCurrency(totalFinalPrice)}
+                    {hasQuoteItems && totalFinalPrice === 0
+                      ? 'A cotizar'
+                      : formatCurrency(totalFinalPrice)}
                   </span>
                 </div>
               </div>

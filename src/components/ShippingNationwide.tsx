@@ -36,7 +36,7 @@ export const ShippingNationwide: React.FC<ShippingNationwideProps> = ({ darkMode
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight">
             Envíos Seguros a{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0EA5E9] via-sky-400 to-[#FACC15]">
+            <span className="text-[#38BDF8]">
               Todo el País
             </span>
           </h2>
