@@ -1,5 +1,6 @@
 import { ProductLine, PortfolioItem, FaqItem, AudienceSegment, VolumeDiscount } from '../types';
 import tazaPersonalizadaImg from '../assets/images/taza_personalizada.jpg';
+import remerasPersonalizadasImg from '../assets/images/remeras_personalizadas.jpg';
 
 export const HERO_SHOWCASE_IMG = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDcJMQhLqUi2xTp85XvEghqsI7xT4I8o_L6-bDea2IsoTiL2sSgZTLK8x7jKK5Ia2mNUBjXxOeI0RzL0BHo8unulJM6ZRniycaOo3KfRBrTsy-wz08qhIGVCVExgx2aebBtal9IRyHFkaQx0_KqAapGrg6EmBxHnu4pTAWivkl8e_MhZLTQaoI-Nckkfihh-QdKOrG2I46MZS9fEbCg0EMC90JJawRzZd-9rLz63snm-CayKrGV42Pi';
 
@@ -13,6 +14,12 @@ export const DEFAULT_VOLUME_DISCOUNTS: VolumeDiscount[] = [
   { minQty: 50, discountPercent: 32, label: '50+ unids: 32% OFF Gran Volumen' }
 ];
 
+const TSHIRT_SIZE_GROUPS = [
+  { label: 'Niños', sizes: ['4', '6', '8', '10', '12', '14', '16'] },
+  { label: 'Adultos', sizes: ['1', '2', '3', '4', '5'] },
+  { label: 'Especiales', sizes: ['6', '7', '8', '9', '10'] },
+];
+
 export const PRODUCT_LINES: ProductLine[] = [
   {
     id: 'camisetas',
@@ -23,7 +30,7 @@ export const PRODUCT_LINES: ProductLine[] = [
     badgeBg: 'bg-yellow-400',
     badgeText: 'text-black',
     basePrice: 14500,
-    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAnSx78CkZJYtiIA3OELR4-c_fp2lZdXWgkY8FVf25vVv0vnKYDBezN8_lxhuGTke8lHAaiyszfGJRtEUk8WXjycyACVj9dTweWXkLVK1L9Tms71QM-93m1NtDu3JqmRxl9PNwMbVNvcuSV7QYCUJXERuqheqmV2eBvgiu5MTFLknOsJEH2BVMTh15Ro5NMAL9ets3nFAAJcPGRUjPqrawPTyO-Vw7obEWYw6EcYsyxPnkID-UmxFtS',
+    imageUrl: remerasPersonalizadasImg,
     description: 'Remeras confeccionadas en 100% algodón 24.1 peinado de alto gramaje. Variedad de colores, cortes (Oversize, Clásica, Cuello Redondo) y talles para tu marca, eventos o regalos.',
     tags: [
       { text: 'Algodón 24.1 Premium', icon: 'Sparkle', color: 'text-yellow-400' },
@@ -34,7 +41,10 @@ export const PRODUCT_LINES: ProductLine[] = [
       { name: 'Blanca Pro', tag: 'DTF / Sublimación', tagColor: 'text-sky-400' },
       { name: 'Colores & Melange', tag: 'DTF Textil HD', tagColor: 'text-yellow-400' }
     ],
-    sizes: ['S (48x68cm)', 'M (52x71cm)', 'L (56x74cm)', 'XL (60x77cm)', '2XL (64x80cm)', '3XL Especial'],
+    sizes: TSHIRT_SIZE_GROUPS.flatMap(({ label, sizes }) =>
+      sizes.map((size) => `${label} ${size}`)
+    ),
+    sizeGroups: TSHIRT_SIZE_GROUPS,
     colors: [
       { name: 'Negro Azabache', hex: '#111111' },
       { name: 'Blanco Óptico', hex: '#FFFFFF', border: true },
@@ -59,7 +69,7 @@ export const PRODUCT_LINES: ProductLine[] = [
     ],
     volumeDiscounts: DEFAULT_VOLUME_DISCOUNTS,
     whatsappMessage: 'Hola, deseo información sobre las REMERAS DE ALGODÓN 24.1 (Varios Colores)',
-    features: ['100% Algodón 24.1 peinado de alto gramaje y suavidad superior', 'Amplia paleta de colores disponibles en stock continuo', 'Talles S a 3XL para damas, caballeros y niños', 'Resistencia a más de 50 lavados']
+    features: ['100% Algodón 24.1 peinado de alto gramaje y suavidad superior', 'Amplia paleta de colores disponibles en stock continuo', 'Talles para niños del 4 al 16, adultos del 1 al 5 y especiales del 6 al 10', 'Resistencia a más de 50 lavados']
   },
   {
     id: 'gorras',

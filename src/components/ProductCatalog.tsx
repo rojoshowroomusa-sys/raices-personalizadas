@@ -32,9 +32,14 @@ import { WhatsAppIcon } from './WhatsAppIcon';
 interface ProductCatalogProps {
   darkMode: boolean;
   onOpenMugsPage: () => void;
+  onOpenShirtsPage: () => void;
 }
 
-export const ProductCatalog: React.FC<ProductCatalogProps> = ({ darkMode, onOpenMugsPage }) => {
+export const ProductCatalog: React.FC<ProductCatalogProps> = ({
+  darkMode,
+  onOpenMugsPage,
+  onOpenShirtsPage,
+}) => {
   const [selectedFilter, setSelectedFilter] = useState<string>('todos');
   const [configProduct, setConfigProduct] = useState<ProductLine | null>(null);
   const [specsProduct, setSpecsProduct] = useState<ProductLine | null>(null);
@@ -205,7 +210,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({ darkMode, onOpen
                 {/* Subtypes mini tag */}
                 <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white">
                   <span className="text-[11px] font-semibold bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10">
-                    {prod.sizes.length} talles/formatos disponibles
+                  {prod.sizeGroups ? `${prod.sizeGroups.length} rangos de talles` : `${prod.sizes.length} talles/formatos disponibles`}
                   </span>
                   <span className="text-[11px] font-semibold bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10">
                     {prod.colors.length} colores
@@ -285,17 +290,28 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({ darkMode, onOpen
                     Medidas / Formatos:
                   </span>
                   <div className="flex flex-wrap gap-1">
-                    {prod.sizes.slice(0, 4).map((s) => (
-                      <span
-                        key={s}
-                        className={`text-[10px] px-2 py-0.5 rounded-md font-medium ${
-                          darkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-200 text-gray-700'
-                        }`}
-                      >
-                        {s}
-                      </span>
-                    ))}
-                    {prod.sizes.length > 4 && (
+                    {prod.sizeGroups
+                      ? prod.sizeGroups.map((group) => (
+                          <span
+                            key={group.label}
+                            className={`text-[10px] px-2 py-0.5 rounded-md font-medium ${
+                              darkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-200 text-gray-700'
+                            }`}
+                          >
+                            {group.label} {group.sizes[0]}–{group.sizes[group.sizes.length - 1]}
+                          </span>
+                        ))
+                      : prod.sizes.slice(0, 4).map((s) => (
+                          <span
+                            key={s}
+                            className={`text-[10px] px-2 py-0.5 rounded-md font-medium ${
+                              darkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-200 text-gray-700'
+                            }`}
+                          >
+                            {s}
+                          </span>
+                        ))}
+                    {!prod.sizeGroups && prod.sizes.length > 4 && (
                       <span className="text-[10px] text-gray-400 self-center">
                         +{prod.sizes.length - 4} más
                       </span>
@@ -331,6 +347,20 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({ darkMode, onOpen
                     >
                       <Info className="w-3.5 h-3.5" />
                       <span>Más información sobre las tazas</span>
+                    </button>
+                  )}
+                  {prod.id === 'camisetas' && (
+                    <button
+                      type="button"
+                      onClick={onOpenShirtsPage}
+                      className={`w-full py-2.5 px-4 rounded-xl border font-extrabold text-[11px] uppercase tracking-wider flex items-center justify-center gap-2 transition-colors ${
+                        darkMode
+                          ? 'border-yellow-400/40 text-yellow-300 hover:bg-yellow-400/10'
+                          : 'border-yellow-400 text-yellow-700 hover:bg-yellow-50'
+                      }`}
+                    >
+                      <Info className="w-3.5 h-3.5" />
+                      <span>Conocé más sobre las remeras</span>
                     </button>
                   )}
 

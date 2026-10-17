@@ -8,6 +8,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ProductCatalog } from './components/ProductCatalog';
 import { MugsPage } from './components/MugsPage';
+import { ShirtsPage } from './components/ShirtsPage';
 import { ShippingNationwide } from './components/ShippingNationwide';
 import { AudienceSegments } from './components/AudienceSegments';
 import { FaqSection } from './components/FaqSection';
@@ -16,16 +17,24 @@ import { FloatingWhatsAppButton } from './components/FloatingWhatsAppButton';
 import { CartDrawer } from './components/CartDrawer';
 import { CartProvider } from './context/CartContext';
 
+type DetailPage = 'mugs' | 'shirts' | null;
+
+const getDetailPage = (): DetailPage => {
+  const pathname = window.location.pathname.replace(/\/+$/, '') || '/';
+  if (pathname === '/tazas-personalizadas') return 'mugs';
+  if (pathname === '/remeras-personalizadas') return 'shirts';
+  return null;
+};
+
 export default function App() {
   // Dark mode by default as requested: "Asegúrate de incluir un modo oscuro por defecto."
   const [darkMode, setDarkMode] = useState<boolean>(true);
-  const [isMugsPage, setIsMugsPage] = useState(
-    () => window.location.pathname === '/tazas-personalizadas'
-  );
+  const [detailPage, setDetailPage] = useState<DetailPage>(getDetailPage);
 
-  const openMugsPage = () => {
-    window.history.pushState({}, '', '/tazas-personalizadas');
-    setIsMugsPage(true);
+  const openDetailPage = (page: Exclude<DetailPage, null>) => {
+    const path = page === 'mugs' ? '/tazas-personalizadas' : '/remeras-personalizadas';
+    window.history.pushState({}, '', path);
+    setDetailPage(page);
     window.scrollTo(0, 0);
   };
 
@@ -43,13 +52,24 @@ export default function App() {
 
   useEffect(() => {
     const handlePopState = () => {
-      setIsMugsPage(window.location.pathname === '/tazas-personalizadas');
+      setDetailPage(getDetailPage());
       window.scrollTo(0, 0);
     };
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
+
+  useEffect(() => {
+    if (detailPage === 'shirts') {
+      document.title = 'Remeras Personalizadas | Raíces Personalizaciones';
+    } else if (detailPage === 'mugs') {
+      document.title = 'Tazas Personalizadas | Raíces Personalizaciones';
+    } else {
+      document.title =
+        'Raíces Personalizaciones | Crea • Imprime • Impacta | Catálogo de Productos Personalizados';
+    }
+  }, [detailPage]);
 
   return (
     <CartProvider>
@@ -62,20 +82,26 @@ export default function App() {
         <Navbar
           darkMode={darkMode}
           onToggleTheme={() => setDarkMode((prev) => !prev)}
-          isDetailPage={isMugsPage}
+          isDetailPage={detailPage !== null}
         />
 
         {/* Main Content Sections */}
         <main>
-          {isMugsPage ? (
+          {detailPage === 'mugs' ? (
             <MugsPage darkMode={darkMode} />
+          ) : detailPage === 'shirts' ? (
+            <ShirtsPage darkMode={darkMode} />
           ) : (
             <>
               {/* Hero Banner & 4 Pillars Strip */}
               <Hero darkMode={darkMode} />
 
               {/* Product Catalog (Expanded with Customizer & Volume Discount Orders) */}
-              <ProductCatalog darkMode={darkMode} onOpenMugsPage={openMugsPage} />
+              <ProductCatalog
+                darkMode={darkMode}
+                onOpenMugsPage={() => openDetailPage('mugs')}
+                onOpenShirtsPage={() => openDetailPage('shirts')}
+              />
 
               {/* Envíos a todo el país - Cobertura y Tiempos de Entrega Nacionales */}
               <ShippingNationwide darkMode={darkMode} />
@@ -90,7 +116,7 @@ export default function App() {
         </main>
 
         {/* Footer & Final Call to Action */}
-        <Footer darkMode={darkMode} isDetailPage={isMugsPage} />
+        <Footer darkMode={darkMode} isDetailPage={detailPage !== null} />
 
         {/* Sticky, Floating WhatsApp Button in the bottom-right corner */}
         <FloatingWhatsAppButton darkMode={darkMode} />

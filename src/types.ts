@@ -34,6 +34,7 @@ export interface ProductLine {
   basePrice: number;
   imageUrl?: string;
   sizes: string[];
+  sizeGroups?: { label: string; sizes: string[] }[];
   colors: ProductColor[];
   techniques: ProductTechnique[];
   placements?: string[];

@@ -20,21 +20,29 @@ interface ProductConfigModalProps {
   product: ProductLine | null;
   onClose: () => void;
   darkMode: boolean;
+  initialSize?: string;
+  initialColor?: ProductColor;
 }
 
 export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
   product,
   onClose,
   darkMode,
+  initialSize,
+  initialColor,
 }) => {
   const { addToCart } = useCart();
 
   if (!product) return null;
 
   // Selected state
-  const [selectedSize, setSelectedSize] = useState<string>(product.sizes[0] || 'Estándar');
+  const [selectedSize, setSelectedSize] = useState<string>(
+    initialSize && product.sizes.includes(initialSize) ? initialSize : product.sizes[0] || 'Estándar'
+  );
   const [selectedColor, setSelectedColor] = useState<ProductColor>(
-    product.colors[0] || { name: 'Negro', hex: '#111111' }
+    initialColor && product.colors.some((color) => color.name === initialColor.name)
+      ? initialColor
+      : product.colors[0] || { name: 'Negro', hex: '#111111' }
   );
   const [selectedTechnique, setSelectedTechnique] = useState<ProductTechnique>(
     product.techniques[0] || {
@@ -236,27 +244,63 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
                 <span className="text-yellow-400 font-bold">{selectedSize}</span>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {product.sizes.map((size) => {
-                  const isSelected = selectedSize === size;
-                  return (
-                    <button
-                      key={size}
-                      type="button"
-                      onClick={() => setSelectedSize(size)}
-                      className={`py-2 px-3 rounded-xl text-xs font-bold border transition-all text-center truncate ${
-                        isSelected
-                          ? 'bg-yellow-400 text-black border-yellow-400 shadow-glow-yellow scale-[1.02]'
-                          : darkMode
-                          ? 'bg-[#161F2E] border-gray-800 text-gray-300 hover:border-gray-600'
-                          : 'bg-white border-gray-200 text-gray-700 hover:border-gray-400'
-                      }`}
-                    >
-                      {size}
-                    </button>
-                  );
-                })}
-              </div>
+              {product.sizeGroups ? (
+                <div className="space-y-3">
+                  {product.sizeGroups.map((group) => (
+                    <div key={group.label} className="space-y-1.5">
+                      <span className="block text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                        {group.label}
+                      </span>
+                      <div className="flex flex-wrap gap-2">
+                        {group.sizes.map((size) => {
+                          const fullSize = `${group.label} ${size}`;
+                          const isSelected = selectedSize === fullSize;
+                          return (
+                            <button
+                              key={fullSize}
+                              type="button"
+                              onClick={() => setSelectedSize(fullSize)}
+                              aria-pressed={isSelected}
+                              className={`min-w-12 rounded-xl border px-3 py-2 text-xs font-bold transition-all ${
+                                isSelected
+                                  ? 'bg-yellow-400 text-black border-yellow-400 shadow-glow-yellow'
+                                  : darkMode
+                                    ? 'bg-[#161F2E] border-gray-800 text-gray-300 hover:border-gray-600'
+                                    : 'bg-white border-gray-200 text-gray-700 hover:border-gray-400'
+                              }`}
+                            >
+                              {size}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                  {product.sizes.map((size) => {
+                    const isSelected = selectedSize === size;
+                    return (
+                      <button
+                        key={size}
+                        type="button"
+                        onClick={() => setSelectedSize(size)}
+                        aria-pressed={isSelected}
+                        className={`truncate rounded-xl border px-3 py-2 text-center text-xs font-bold transition-all ${
+                          isSelected
+                            ? 'bg-yellow-400 text-black border-yellow-400 shadow-glow-yellow scale-[1.02]'
+                            : darkMode
+                              ? 'bg-[#161F2E] border-gray-800 text-gray-300 hover:border-gray-600'
+                              : 'bg-white border-gray-200 text-gray-700 hover:border-gray-400'
+                        }`}
+                      >
+                        {size}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
             </div>
 
             {/* 2. Color Palette Selector */}
