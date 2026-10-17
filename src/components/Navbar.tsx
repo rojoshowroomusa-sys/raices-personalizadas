@@ -39,7 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="max-w-7xl mx-auto flex min-w-0 justify-between items-center px-2 sm:px-4">
           <span className="flex min-w-0 flex-1 items-center gap-2 text-[11px] sm:text-xs">
             <Sparkles className="w-4 h-4 text-black shrink-0" />
-            <span className="min-w-0 truncate">Envíos seguros a nivel nacional • Calidad garantizada en cada producto</span>
+            <span className="min-w-0 truncate">Envíos a todo el país por Vía Cargo • Seguro en todos los envíos</span>
           </span>
           <span className="hidden md:inline-flex items-center gap-3 font-extrabold text-[11px]">
             <span>¡Atención directa y personalizada!</span>
@@ -92,7 +92,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden 2xl:flex items-center gap-4 text-xs font-semibold">
+          <nav className="hidden xl:flex items-center gap-4 text-xs font-semibold">
             {primaryNavLinks.map((link) => (
               <a
                 key={link.label}
@@ -194,7 +194,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`2xl:hidden p-2 rounded-xl ${
+              className={`xl:hidden p-2 rounded-xl ${
                 darkMode ? 'text-gray-300 hover:bg-gray-800' : 'text-gray-700 hover:bg-gray-100'
               }`}
               aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
@@ -208,7 +208,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Mobile dropdown menu */}
         {mobileMenuOpen && (
           <div
-            className={`2xl:hidden px-4 pt-2 pb-6 space-y-2 border-t ${
+            className={`xl:hidden px-4 pt-2 pb-6 space-y-2 border-t ${
               darkMode ? 'bg-[#0E1522] border-gray-800' : 'bg-white border-gray-200'
             }`}
           >

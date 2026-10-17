@@ -601,8 +601,8 @@ export const AUDIENCE_SEGMENTS: AudienceSegment[] = [
 export const FAQ_ITEMS: FaqItem[] = [
   {
     id: 'faq-1',
-    question: '¿Cuáles son los tiempos de entrega promedio para pedidos personalizados?',
-    answerHtml: 'Para pedidos pequeños o muestras de <strong class="text-white">1 a 6 unidades</strong>, el tiempo habitual es de <strong class="text-yellow-400">2 a 4 días hábiles</strong>. Para pedidos en lote o volumen de <strong class="text-white">12 a 500+ unidades</strong>, oscila entre <strong class="text-yellow-400">5 y 8 días hábiles</strong> según la técnica seleccionada. ¿Tienes una fecha límite urgente? Contamos con opción de <strong class="text-sky-400">servicio exprés</strong> bajo previa coordinación.'
+    question: '¿Cuándo estará listo mi pedido?',
+    answerHtml: 'El plazo depende del producto, la cantidad y el tipo de personalización. Consultanos con tu fecha deseada para confirmar una estimación antes de realizar el pedido.'
   },
   {
     id: 'faq-2',
@@ -621,13 +621,13 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     id: 'faq-5',
-    question: '¿Hacen envíos a todo el país y cómo se rastrea mi paquete?',
-    answerHtml: '<strong class="text-white">Sí, despachamos a cualquier punto de todo el país</strong> mediante transportadoras certificadas (Correo Argentino, Andreani, OCA). Apenas tu orden sea enviada te proporcionamos el <strong class="text-sky-400">número de guía para rastreo en tiempo real</strong>. Todos los pedidos van debidamente embalados y protegidos.'
+    question: '¿Hacen envíos a todo el país?',
+    answerHtml: '<strong class="text-white">Sí, hacemos envíos a todo el país a través de Vía Cargo.</strong> Todos los envíos cuentan con seguro. Consultanos el costo y el plazo estimado para tu localidad.'
   },
   {
     id: 'faq-6',
-    question: '¿Puedo solicitar una muestra física antes de producir todo mi lote?',
-    answerHtml: '<strong class="text-white">Totalmente.</strong> Para proyectos de dotación corporativa, merchandising o eventos de gran volumen elaboramos una muestra de aprobación previa o generamos un <strong class="text-pink-400">mockup digital 3D</strong> para que verifiques proporción, colores y posición antes de encender las máquinas de producción masiva.'
+    question: '¿Puedo pedir una muestra antes de hacer un pedido grande?',
+    answerHtml: 'La disponibilidad de muestras depende del producto y del proyecto. Consultanos antes de confirmar el pedido para saber qué opciones hay.'
   }
 ];
 

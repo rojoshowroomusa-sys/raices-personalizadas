@@ -151,7 +151,7 @@ export const Hero: React.FC<HeroProps> = ({ darkMode }) => {
               </a>
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-[#EC4899] shrink-0" />
-                <span>Garantía en estampados y acabados</span>
+                <span>Seguro incluido en todos los envíos</span>
               </div>
             </div>
           </div>
@@ -182,6 +182,7 @@ export const Hero: React.FC<HeroProps> = ({ darkMode }) => {
                     src={HERO_SHOWCASE_IMG}
                     alt="Muestra de Catálogo Raíces Personalizaciones con remeras de algodón 24.1, gorras y termos personalizados"
                     referrerPolicy="no-referrer"
+                    fetchPriority="high"
                     className="w-full h-auto object-cover rounded-xl shadow-inner brightness-95 hover:brightness-105 transition-all duration-300"
                   />
 

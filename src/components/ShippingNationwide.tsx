@@ -3,12 +3,10 @@ import {
   Truck,
   MapPin,
   ShieldCheck,
-  PackageCheck,
-  Radio,
-  CheckCircle2,
-  FileCheck2,
-  Sparkles
+  Clock3
 } from 'lucide-react';
+import { WHATSAPP_PHONE } from '../data/products';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface ShippingNationwideProps {
   darkMode: boolean;
@@ -30,12 +28,12 @@ export const ShippingNationwide: React.FC<ShippingNationwideProps> = ({ darkMode
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-gradient-to-r from-[#0EA5E9]/20 via-[#FACC15]/20 to-[#EC4899]/20 border border-sky-400/40 text-[#0EA5E9]">
-            <Truck className="w-4 h-4 text-[#FACC15] animate-pulse" />
-            <span>Cobertura Nacional • Despacho Seguro</span>
+            <Truck className="w-4 h-4 text-[#FACC15]" />
+            <span>Envíos nacionales por Vía Cargo</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight">
-            Envíos Seguros a{' '}
+            Envíos a{' '}
             <span className="text-[#38BDF8]">
               Todo el País
             </span>
@@ -46,8 +44,8 @@ export const ShippingNationwide: React.FC<ShippingNationwideProps> = ({ darkMode
               darkMode ? 'text-gray-300' : 'text-gray-600'
             }`}
           >
-            Despachamos tus pedidos personalizados desde el taller hasta la puerta de tu empresa,
-            negocio o domicilio con embalaje blindado y guía de rastreo online.
+            Hacemos envíos a todo el país a través de Vía Cargo. Todos los envíos cuentan con
+            seguro; consultanos el costo y el plazo estimado para tu localidad.
           </p>
         </div>
 
@@ -65,10 +63,10 @@ export const ShippingNationwide: React.FC<ShippingNationwideProps> = ({ darkMode
               <MapPin className="w-6 h-6 text-[#0EA5E9]" />
             </div>
             <h3 className="text-base font-extrabold text-white dark:text-white mb-2">
-              Cobertura 100% Nacional
+              Envíos a todo el país
             </h3>
             <p className="text-xs text-gray-400 leading-relaxed">
-              Llegamos a ciudades principales, intermedias, cabeceras municipales y trayectos especiales en los 32 departamentos.
+              Despachamos pedidos a todo el país mediante Vía Cargo.
             </p>
           </div>
 
@@ -81,13 +79,13 @@ export const ShippingNationwide: React.FC<ShippingNationwideProps> = ({ darkMode
             }`}
           >
             <div className="w-12 h-12 rounded-xl bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center mb-4">
-              <PackageCheck className="w-6 h-6 text-[#FACC15]" />
+              <Truck className="w-6 h-6 text-[#FACC15]" />
             </div>
             <h3 className="text-base font-extrabold text-white dark:text-white mb-2">
-              Embalaje Antigolpes &amp; Sellado
+              Despacho por Vía Cargo
             </h3>
             <p className="text-xs text-gray-400 leading-relaxed">
-              Prendas protegidas en bolsas individuales herméticas; termos, placas de aluminio y gorras en cajas reforzadas con protección burbuja.
+              Coordinamos el despacho de tu pedido a través de Vía Cargo.
             </p>
           </div>
 
@@ -100,13 +98,13 @@ export const ShippingNationwide: React.FC<ShippingNationwideProps> = ({ darkMode
             }`}
           >
             <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-4">
-              <Radio className="w-6 h-6 text-emerald-400" />
+              <ShieldCheck className="w-6 h-6 text-emerald-400" />
             </div>
             <h3 className="text-base font-extrabold text-white dark:text-white mb-2">
-              Guía y Rastreo en Línea
+              Seguro incluido
             </h3>
             <p className="text-xs text-gray-400 leading-relaxed">
-              Apenas tu paquete sale a la transportadora, te compartimos de inmediato tu número de guía oficial para seguimiento en vivo.
+              Todos los envíos cuentan con seguro.
             </p>
           </div>
 
@@ -119,18 +117,17 @@ export const ShippingNationwide: React.FC<ShippingNationwideProps> = ({ darkMode
             }`}
           >
             <div className="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/30 flex items-center justify-center mb-4">
-              <ShieldCheck className="w-6 h-6 text-pink-400" />
+              <Clock3 className="w-6 h-6 text-pink-400" />
             </div>
             <h3 className="text-base font-extrabold text-white dark:text-white mb-2">
-              Carga 100% Asegurada
+              Costos y plazos
             </h3>
             <p className="text-xs text-gray-400 leading-relaxed">
-              Todos los despachos viajan debidamente amparados con seguro de transporte para tu total tranquilidad y confianza.
+              Consultanos el costo y el plazo estimado para tu localidad antes de realizar el pedido.
             </p>
           </div>
         </div>
 
-        {/* Carrier Logos / Badges Strip */}
         <div
           className={`rounded-2xl p-6 border mb-8 ${
             darkMode ? 'bg-[#0E1522]/60 border-gray-800' : 'bg-gray-100 border-gray-200'
@@ -139,84 +136,22 @@ export const ShippingNationwide: React.FC<ShippingNationwideProps> = ({ darkMode
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-center md:text-left">
               <span className="text-xs font-bold uppercase tracking-wider text-gray-400 block">
-                Alianzas con las principales redes logísticas
+                ¿Querés consultar por tu envío?
               </span>
               <p className="text-xs text-gray-500">
-                Coordinación directa de guías para optimizar tiempos y costos de entrega
+                Escribinos con tu localidad para consultar el costo y el plazo estimado.
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              {[
-                'Correo Argentino',
-                'Andreani',
-                'OCA Logística',
-                'Vía Cargo',
-                'Integral Pack'
-              ].map((carrier) => (
-                <div
-                  key={carrier}
-                  className={`px-3.5 py-1.5 rounded-lg border text-xs font-bold tracking-wide ${
-                    darkMode
-                      ? 'bg-gray-900 border-gray-700 text-gray-200 shadow-inner'
-                      : 'bg-white border-gray-300 text-gray-800 shadow-sm'
-                  }`}
-                >
-                  🚚 {carrier}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Dispatch FAQ / Helpful Tips Strip */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-          <div
-            className={`p-4 rounded-xl border flex items-start gap-3 ${
-              darkMode ? 'bg-[#101726]/40 border-gray-800' : 'bg-white border-gray-200'
-            }`}
-          >
-            <CheckCircle2 className="w-5 h-5 text-[#FACC15] shrink-0 mt-0.5" />
-            <div>
-              <strong className="text-white dark:text-white block font-bold mb-0.5">
-                Desde 1 sola unidad
-              </strong>
-              <span className="text-gray-400">
-                Despachamos desde una sola pieza o muestra física hasta pedidos de gran volumen en cajas maestras reforzadas.
-              </span>
-            </div>
-          </div>
-
-          <div
-            className={`p-4 rounded-xl border flex items-start gap-3 ${
-              darkMode ? 'bg-[#101726]/40 border-gray-800' : 'bg-white border-gray-200'
-            }`}
-          >
-            <FileCheck2 className="w-5 h-5 text-[#0EA5E9] shrink-0 mt-0.5" />
-            <div>
-              <strong className="text-white dark:text-white block font-bold mb-0.5">
-                Fotos previas antes del despacho
-              </strong>
-              <span className="text-gray-400">
-                Te enviamos fotografías o videos de tu pedido terminado y empacado antes de entregarlo a la transportadora.
-              </span>
-            </div>
-          </div>
-
-          <div
-            className={`p-4 rounded-xl border flex items-start gap-3 ${
-              darkMode ? 'bg-[#101726]/40 border-gray-800' : 'bg-white border-gray-200'
-            }`}
-          >
-            <Sparkles className="w-5 h-5 text-[#EC4899] shrink-0 mt-0.5" />
-            <div>
-              <strong className="text-white dark:text-white block font-bold mb-0.5">
-                Entregas coordinadas y seguras
-              </strong>
-              <span className="text-gray-400">
-                ¿Tu evento o fecha especial tiene un día límite? Coordinamos despacho prioritario con número de guía inmediato.
-              </span>
-            </div>
+            <a
+              href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola, quiero consultar el costo y el plazo estimado de un envío.')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-5 py-3 text-sm font-extrabold text-slate-950 transition-colors hover:bg-emerald-400"
+            >
+              <WhatsAppIcon className="h-4 w-4 text-slate-950" />
+              Consultar por WhatsApp
+            </a>
           </div>
         </div>
       </div>

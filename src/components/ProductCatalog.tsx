@@ -213,6 +213,8 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                   <img
                     src={prod.imageUrl}
                     alt={prod.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 ) : (

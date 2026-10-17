@@ -54,8 +54,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ darkMode }) => {
           </p>
 
           <p className={`text-sm sm:text-base ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            Información clara y transparente sobre tiempos de producción, técnicas de estampado,
-            mínimos y envíos garantizados a nivel nacional.
+            Información útil sobre producción, personalización y envíos.
           </p>
         </div>
 
