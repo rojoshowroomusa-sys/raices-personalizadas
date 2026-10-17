@@ -10,6 +10,7 @@ import { ProductCatalog } from './components/ProductCatalog';
 import { MugsPage } from './components/MugsPage';
 import { ShirtsPage } from './components/ShirtsPage';
 import { SizeChartsPage } from './components/SizeChartsPage';
+import { AluminumPlatesPage } from './components/AluminumPlatesPage';
 import { ShippingNationwide } from './components/ShippingNationwide';
 import { AudienceSegments } from './components/AudienceSegments';
 import { FaqSection } from './components/FaqSection';
@@ -18,13 +19,14 @@ import { FloatingWhatsAppButton } from './components/FloatingWhatsAppButton';
 import { CartDrawer } from './components/CartDrawer';
 import { CartProvider } from './context/CartContext';
 
-type DetailPage = 'mugs' | 'shirts' | 'sizeCharts' | null;
+type DetailPage = 'mugs' | 'shirts' | 'sizeCharts' | 'aluminumPlates' | null;
 
 const getDetailPage = (): DetailPage => {
   const pathname = window.location.pathname.replace(/\/+$/, '') || '/';
   if (pathname === '/tazas-personalizadas') return 'mugs';
   if (pathname === '/remeras-personalizadas') return 'shirts';
   if (pathname === '/tabla-de-talles') return 'sizeCharts';
+  if (pathname === '/placas-aluminio-personalizadas') return 'aluminumPlates';
   return null;
 };
 
@@ -34,7 +36,13 @@ export default function App() {
   const [detailPage, setDetailPage] = useState<DetailPage>(getDetailPage);
 
   const openDetailPage = (page: Exclude<DetailPage, null>) => {
-    const path = page === 'mugs' ? '/tazas-personalizadas' : '/remeras-personalizadas';
+    const paths: Record<Exclude<DetailPage, null>, string> = {
+      mugs: '/tazas-personalizadas',
+      shirts: '/remeras-personalizadas',
+      sizeCharts: '/tabla-de-talles',
+      aluminumPlates: '/placas-aluminio-personalizadas',
+    };
+    const path = paths[page];
     window.history.pushState({}, '', path);
     setDetailPage(page);
     window.scrollTo(0, 0);
@@ -69,6 +77,8 @@ export default function App() {
       document.title = 'Tazas Personalizadas | Raíces Personalizaciones';
     } else if (detailPage === 'sizeCharts') {
       document.title = 'Tablas de Talles | Raíces Personalizaciones';
+    } else if (detailPage === 'aluminumPlates') {
+      document.title = 'Placas de Aluminio Sublimable | Raíces Personalizaciones';
     } else {
       document.title =
         'Raíces Personalizaciones | Crea • Imprime • Impacta | Catálogo de Productos Personalizados';
@@ -97,6 +107,8 @@ export default function App() {
             <ShirtsPage darkMode={darkMode} />
           ) : detailPage === 'sizeCharts' ? (
             <SizeChartsPage darkMode={darkMode} />
+          ) : detailPage === 'aluminumPlates' ? (
+            <AluminumPlatesPage darkMode={darkMode} />
           ) : (
             <>
               {/* Hero Banner & 4 Pillars Strip */}
@@ -107,6 +119,7 @@ export default function App() {
                 darkMode={darkMode}
                 onOpenMugsPage={() => openDetailPage('mugs')}
                 onOpenShirtsPage={() => openDetailPage('shirts')}
+                onOpenAluminumPlatesPage={() => openDetailPage('aluminumPlates')}
               />
 
               {/* Envíos a todo el país - Cobertura y Tiempos de Entrega Nacionales */}

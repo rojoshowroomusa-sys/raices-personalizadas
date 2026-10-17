@@ -136,8 +136,8 @@ export const Footer: React.FC<FooterProps> = ({ darkMode, isDetailPage = false }
               </h4>
               <ul className="space-y-2 text-xs">
                 <li>
-                  <a href={sectionHref('#catalogo')} className="hover:text-yellow-400 transition-colors text-yellow-300 font-bold">
-                    ★ Cuadros de Aluminio (15x20 &amp; 20x30 cm)
+                  <a href="/placas-aluminio-personalizadas" className="hover:text-yellow-400 transition-colors text-yellow-300 font-bold">
+                    ★ Placas de Aluminio (15×20 &amp; 30×20 cm)
                   </a>
                 </li>
                 <li>
@@ -166,8 +166,8 @@ export const Footer: React.FC<FooterProps> = ({ darkMode, isDetailPage = false }
                   </a>
                 </li>
                 <li>
-                  <a href="/remeras-personalizadas" className="hover:text-yellow-400 transition-colors">
-                    Remeras Personalizadas
+                  <a href="/placas-aluminio-personalizadas" className="hover:text-yellow-400 transition-colors">
+                    Placas de aluminio sublimable
                   </a>
                 </li>
                 <li>
@@ -176,13 +176,13 @@ export const Footer: React.FC<FooterProps> = ({ darkMode, isDetailPage = false }
                   </a>
                 </li>
                 <li>
-                  <a href={sectionHref('#catalogo')} className="hover:text-yellow-400 transition-colors">
+                  <a href="/placas-aluminio-personalizadas" className="hover:text-yellow-400 transition-colors">
                     4. Bolsos y Tulas Deportivas
                   </a>
                 </li>
                 <li>
                   <a href={sectionHref('#catalogo')} className="hover:text-yellow-400 transition-colors">
-                    5. Cuadros de Aluminio (15x20 y 20x30 cm)
+                    5. Placas de Aluminio (15×20 y 30×20 cm)
                   </a>
                 </li>
                 <li>

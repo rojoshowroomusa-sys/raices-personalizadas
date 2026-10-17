@@ -49,7 +49,7 @@ export const FloatingWhatsAppButton: React.FC<FloatingWhatsAppButtonProps> = ({ 
   };
 
   const quickInquiries = [
-    { label: 'Cuadros de Aluminio (15x20 y 20x30)', icon: Sparkles, text: '¡Hola! Quisiera información y cotización sobre los cuadros de aluminio personalizados (15x20 cm y 20x30 cm).' },
+    { label: 'Placas de Aluminio (15x20 y 30x20)', icon: Sparkles, text: '¡Hola! Quisiera información y cotización sobre placas de aluminio personalizadas (15x20 cm y 30x20 cm), en fondo plata, oro o blanco.' },
     { label: 'Souvenirs (Llaveros, Imanes, Pines)', icon: Gift, text: '¡Hola! Me gustaría cotizar souvenirs personalizados (llaveros, imanes, destapadores o recordatorios).' },
     { label: 'Remeras de Algodón 24.1 (Varios Colores)', icon: Shirt, text: '¡Hola! Me gustaría información sobre remeras de algodón 24.1 en varios colores personalizadas en DTF Textil.' },
     { label: 'Gorras Bordadas 3D', icon: Scissors, text: '¡Hola! Quisiera información sobre gorras con bordado 3D.' },

@@ -198,46 +198,47 @@ export const PRODUCT_LINES: ProductLine[] = [
   {
     id: 'cuadros-aluminio',
     number: 5,
-    title: 'CUADROS DE ALUMINIO',
-    subtitle: '15x20 & 20x30 cm',
+    title: 'PLACAS DE ALUMINIO SUBLIMABLE',
+    subtitle: '15×20 & 30×20 cm · Plata, oro y blanco',
     accentColor: '#38BDF8',
     badgeBg: 'bg-sky-400',
     badgeText: 'text-black',
     basePrice: 8900,
     imageUrl: '/src/assets/images/cuadro_aluminio_personalizado.jpg',
-    description: 'Cuadros fotográficos impresos en láminas de aluminio pulido con tecnología de sublimación HD. Acabado brillante efecto espejo con colores hipervibrantes. Disponibles en medidas 15 x 20 cm y 20 x 30 cm, ideales para fotos familiares, aniversarios, arte y decoración moderna.',
+    description: 'Placas fotográficas personalizadas en aluminio sublimable. Elegí entre los formatos 15 × 20 cm y 30 × 20 cm, y el fondo plata, oro o blanco. Una forma especial de exhibir fotos, ilustraciones y diseños propios.',
     tags: [
       { text: 'Sublimación HD en Metal', icon: 'Sparkle', color: 'text-sky-400' },
       { text: 'Brillo Espejo & Resistente', icon: 'ShieldCheck', color: 'text-yellow-400' }
     ],
     subtypes: [
-      { name: 'Medida 15 x 20 cm', tag: 'Escritorio / Base', tagColor: 'text-yellow-400' },
-      { name: 'Medida 20 x 30 cm', tag: 'Pared / Gran Formato', tagColor: 'text-sky-400' },
-      { name: 'Acabado Brillante', tag: 'Sublimación HD', tagColor: 'text-pink-400' }
+      { name: 'Medida 15 × 20 cm', tag: 'Formato compacto', tagColor: 'text-yellow-400' },
+      { name: 'Medida 30 × 20 cm', tag: 'Formato panorámico', tagColor: 'text-sky-400' },
+      { name: 'Fondo plata, oro o blanco', tag: 'Elegí tu terminación', tagColor: 'text-pink-400' }
     ],
-    sizes: ['15 x 20 cm (Escritorio / Base)', '20 x 30 cm (Pared / Formato A4)'],
+    sizes: ['15 × 20 cm', '30 × 20 cm'],
     colors: [
-      { name: 'Aluminio Brillo Espejo', hex: '#E2E8F0' },
-      { name: 'Aluminio Satinado Mate', hex: '#94A3B8' }
+      { name: 'Plata', hex: '#BEC5CC' },
+      { name: 'Oro', hex: '#D4AF37' },
+      { name: 'Blanco', hex: '#F7F5EF', border: true }
     ],
     techniques: [
-      { id: 'sublimacion_aluminio', name: 'Sublimación Fotográfica HD en Metal', tag: 'Espejo HD', desc: 'Transferencia térmica al vacío con nitidez 1440 DPI y protección UV.', extraPerUnit: 0 }
+      { id: 'sublimacion_aluminio', name: 'Sublimación Fotográfica HD en Metal', tag: 'Sublimación HD', desc: 'Impresión personalizada sobre una placa de aluminio sublimable.', extraPerUnit: 0 }
     ],
     placements: [
-      'Orientación Vertical (Retrato)',
-      'Orientación Horizontal (Paisaje)'
+      'Vertical (retrato)',
+      'Horizontal (paisaje)'
     ],
     volumeDiscounts: [
       { minQty: 1, discountPercent: 0, label: '1 a 3 unids: Precio Base' },
       { minQty: 4, discountPercent: 15, label: '4 a 9 unids: 15% OFF' },
       { minQty: 10, discountPercent: 25, label: '10+ unids: 25% OFF Especial' }
     ],
-    whatsappMessage: 'Hola, deseo información y cotización sobre los CUADROS DE ALUMINIO personalizados (15x20 cm y 20x30 cm)',
+    whatsappMessage: 'Hola, deseo información y cotización sobre placas de aluminio sublimable. Me interesan los formatos 15x20 cm y 30x20 cm, en fondo plata, oro o blanco.',
     features: [
-      'Lámina de aluminio especial para sublimación fotográfica',
-      'Medidas exactas disponibles: 15 x 20 cm y 20 x 30 cm',
-      'Resistente al agua, humedad y rayos UV (no pierde brillo ni color)',
-      'Incluye soporte listo para exhibir en escritorio o base'
+      'Placa de aluminio preparada para sublimación',
+      'Formatos disponibles: 15 × 20 cm y 30 × 20 cm',
+      'Fondos disponibles: plata, oro y blanco',
+      'Personalizala con tu foto o diseño'
     ]
   },
   {
@@ -299,18 +300,18 @@ export const PRODUCT_LINES: ProductLine[] = [
 
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
-    id: 'cuadros-aluminio-15x20-20x30',
-    title: 'Cuadros de Aluminio Personalizados (15x20 y 20x30 cm)',
+    id: 'placas-aluminio-15x20-30x20',
+    title: 'Placas de Aluminio Personalizadas (15×20 y 30×20 cm)',
     category: 'cuadros',
     badge: 'Aluminio Sublimado HD',
     badgeColor: 'border-sky-400/40 text-sky-300',
     imageUrl: '/src/assets/images/cuadro_aluminio_personalizado.jpg',
-    description: 'Impresión fotográfica en láminas de aluminio pulido con tecnología de sublimación de alta definición. Colores intensos, acabado brillante tipo espejo y máxima durabilidad.',
+    description: 'Impresión personalizada por sublimación en placas de aluminio, con dos formatos disponibles y opciones de fondo plata, oro o blanco.',
     client: 'Fotografía & Recuerdos Personalizados',
     units: 'Desde 1 unidad',
     technique: 'Sublimación Digital en Metal HD',
     rating: 5,
-    specs: ['Medidas exactas: 15 x 20 cm y 20 x 30 cm', 'Acabado espejo ultra brillante', 'Resistente a humedad, sol y rayones', 'Incluye soporte de exhibición para mesa o repisa']
+    specs: ['Medidas: 15 × 20 cm y 30 × 20 cm', 'Fondos: plata, oro y blanco', 'Orientación vertical u horizontal', 'Personalizable con foto o diseño propio']
   },
   {
     id: 'souvenirs-llaveros-imanes',
@@ -489,7 +490,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     id: 'faq-2',
     number: '02',
     question: '¿Qué diferencia hay entre DTF Textil, Sublimación, Bordado 3D y Grabado Láser?',
-    answerHtml: '<p><strong class="text-yellow-400">• DTF Textil HD:</strong> Ideal para prendas de algodón o poliéster en cualquier color, con degradados e ilustraciones detalladas sin límite de tintas.</p><p class="mt-2"><strong class="text-sky-400">• Sublimación HD:</strong> Ideal para cuadros de aluminio personalizados (15x20 y 20x30 cm), mugs y termos cerámicos con calidad fotográfica y brillo espejo indeleble.</p><p class="mt-2"><strong class="text-pink-400">• Bordado 3D / Computarizado:</strong> Máxima elegancia y relieve premium en gorras trucker, chaquetas, polos y buzos.</p><p class="mt-2"><strong class="text-emerald-400">• Grabado Láser de Fibra:</strong> Grabado permanente e indeleble sobre acero inoxidable, aluminio, madera y cuero sintético.</p>'
+    answerHtml: '<p><strong class="text-yellow-400">• DTF Textil HD:</strong> Ideal para prendas de algodón o poliéster en cualquier color, con degradados e ilustraciones detalladas sin límite de tintas.</p><p class="mt-2"><strong class="text-sky-400">• Sublimación HD:</strong> Ideal para placas de aluminio personalizadas (15×20 y 30×20 cm), mugs y termos cerámicos con calidad fotográfica.</p><p class="mt-2"><strong class="text-pink-400">• Bordado 3D / Computarizado:</strong> Máxima elegancia y relieve premium en gorras trucker, chaquetas, polos y buzos.</p><p class="mt-2"><strong class="text-emerald-400">• Grabado Láser de Fibra:</strong> Grabado permanente e indeleble sobre acero inoxidable, aluminio, madera y cuero sintético.</p>'
   },
   {
     id: 'faq-3',

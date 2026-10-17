@@ -61,7 +61,7 @@ export const Hero: React.FC<HeroProps> = ({ darkMode }) => {
                 }`}
               >
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Cuadros de Aluminio 15x20 &amp; 20x30 cm</span>
+                <span>Placas de Aluminio 15×20 &amp; 30×20 cm</span>
               </a>
             </div>
 
@@ -92,7 +92,7 @@ export const Hero: React.FC<HeroProps> = ({ darkMode }) => {
               <strong className={darkMode ? 'text-white' : 'text-gray-900'}>
                 DTF textil, Sublimación, Bordados de alta definición, Grabado láser
               </strong>{' '}
-              y vinilo térmico. Personalizamos cuadros de aluminio (15x20 y 20x30 cm), souvenirs, prendas, termos y recordatorios únicos a tu medida.
+              y vinilo térmico. Personalizamos placas de aluminio (15×20 y 30×20 cm), souvenirs, prendas, termos y recordatorios únicos a tu medida.
             </p>
 
             {/* Action CTAs */}

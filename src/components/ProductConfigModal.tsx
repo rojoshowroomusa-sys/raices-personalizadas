@@ -112,7 +112,7 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 overflow-y-auto animate-in fade-in duration-200"
+      className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 overflow-y-auto animate-in fade-in duration-200"
     >
       <div
         className={`relative w-full max-w-4xl my-auto rounded-3xl border shadow-2xl overflow-hidden transition-all duration-300 max-h-[92vh] flex flex-col ${
@@ -147,7 +147,9 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
                   darkMode ? 'text-gray-400' : 'text-gray-500'
                 } hidden sm:block`}
               >
-                Configura talles, colores, técnicas y arma tu pedido con descuento mayorista.
+                {product.id === 'cuadros-aluminio'
+                  ? 'Elegí el formato, fondo y orientación de la placa para armar tu pedido.'
+                  : 'Configura talles, colores, técnicas y arma tu pedido con descuento mayorista.'}
               </p>
             </div>
           </div>
@@ -239,7 +241,9 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
               <div className="flex items-center justify-between text-xs">
                 <span className="font-extrabold uppercase tracking-wider flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-yellow-400" />
-                  1. Medida / Formato / Talle:
+                  {product.id === 'cuadros-aluminio'
+                    ? '1. Formato de placa:'
+                    : '1. Medida / Formato / Talle:'}
                 </span>
                 <span className="text-yellow-400 font-bold">{selectedSize}</span>
               </div>
@@ -308,7 +312,9 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
               <div className="flex items-center justify-between text-xs">
                 <span className="font-extrabold uppercase tracking-wider flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-pink-500" />
-                  2. Color de Prenda / Base:
+                  {product.id === 'cuadros-aluminio'
+                    ? '2. Fondo de la placa:'
+                    : '2. Color de Prenda / Base:'}
                 </span>
                 <span className="text-pink-400 font-bold">{selectedColor.name}</span>
               </div>
@@ -418,7 +424,9 @@ export const ProductConfigModal: React.FC<ProductConfigModalProps> = ({
               <div className="space-y-2">
                 <span className="font-extrabold uppercase tracking-wider text-xs flex items-center gap-1.5">
                   <Layers className="w-3.5 h-3.5 text-yellow-400" />
-                  4. Posición / Ubicación del Estampado:
+                  {product.id === 'cuadros-aluminio'
+                    ? '4. Orientación de la placa:'
+                    : '4. Posición / Ubicación del Estampado:'}
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {product.placements.map((plc) => {

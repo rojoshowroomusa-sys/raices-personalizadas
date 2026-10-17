@@ -33,12 +33,14 @@ interface ProductCatalogProps {
   darkMode: boolean;
   onOpenMugsPage: () => void;
   onOpenShirtsPage: () => void;
+  onOpenAluminumPlatesPage: () => void;
 }
 
 export const ProductCatalog: React.FC<ProductCatalogProps> = ({
   darkMode,
   onOpenMugsPage,
   onOpenShirtsPage,
+  onOpenAluminumPlatesPage,
 }) => {
   const [selectedFilter, setSelectedFilter] = useState<string>('todos');
   const [configProduct, setConfigProduct] = useState<ProductLine | null>(null);
@@ -361,6 +363,20 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                     >
                       <Info className="w-3.5 h-3.5" />
                       <span>Conocé más sobre las remeras</span>
+                    </button>
+                  )}
+                  {prod.id === 'cuadros-aluminio' && (
+                    <button
+                      type="button"
+                      onClick={onOpenAluminumPlatesPage}
+                      className={`w-full py-2.5 px-4 rounded-xl border font-extrabold text-[11px] uppercase tracking-wider flex items-center justify-center gap-2 transition-colors ${
+                        darkMode
+                          ? 'border-sky-400/40 text-sky-300 hover:bg-sky-400/10'
+                          : 'border-sky-300 text-sky-700 hover:bg-sky-50'
+                      }`}
+                    >
+                      <Info className="w-3.5 h-3.5" />
+                      <span>Conocé las placas sublimables</span>
                     </button>
                   )}
 

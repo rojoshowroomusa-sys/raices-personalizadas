@@ -87,7 +87,7 @@ export const ShippingNationwide: React.FC<ShippingNationwideProps> = ({ darkMode
               Embalaje Antigolpes &amp; Sellado
             </h3>
             <p className="text-xs text-gray-400 leading-relaxed">
-              Prendas protegidas en bolsas individuales herméticas; termos, cuadros de aluminio y gorras en cajas reforzadas con protección burbuja.
+              Prendas protegidas en bolsas individuales herméticas; termos, placas de aluminio y gorras en cajas reforzadas con protección burbuja.
             </p>
           </div>
 

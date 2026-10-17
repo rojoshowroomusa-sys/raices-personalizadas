@@ -16,7 +16,7 @@ export const GalleryPortfolio: React.FC<GalleryPortfolioProps> = ({ darkMode }) 
 
   const filters = [
     { id: 'all', label: 'Todos', count: PORTFOLIO_ITEMS.length },
-    { id: 'cuadros', label: 'Cuadros de Aluminio', count: PORTFOLIO_ITEMS.filter((i) => i.category === 'cuadros').length },
+    { id: 'cuadros', label: 'Placas de Aluminio', count: PORTFOLIO_ITEMS.filter((i) => i.category === 'cuadros').length },
     { id: 'souvenirs', label: 'Souvenirs & Recuerdos', count: PORTFOLIO_ITEMS.filter((i) => i.category === 'souvenirs').length },
     { id: 'camisetas', label: 'Remeras & Hoodies', count: PORTFOLIO_ITEMS.filter((i) => i.category === 'camisetas').length },
     { id: 'gorras', label: 'Gorras Bordadas 3D', count: PORTFOLIO_ITEMS.filter((i) => i.category === 'gorras').length },
