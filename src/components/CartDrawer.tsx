@@ -5,7 +5,6 @@ import {
   Plus,
   Minus,
   ShoppingBag,
-  MessageSquare,
   Sparkles,
   Truck,
   ShieldCheck,
@@ -16,6 +15,7 @@ import {
   TrendingDown,
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface CartDrawerProps {
   darkMode: boolean;
@@ -452,7 +452,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ darkMode }) => {
                 onClick={handleSendWhatsApp}
                 className="w-full py-4 px-6 rounded-2xl bg-[#25D366] hover:bg-emerald-400 text-slate-950 font-black text-sm uppercase tracking-wider text-center flex items-center justify-center gap-2.5 shadow-xl hover:shadow-emerald-500/30 transition-all duration-200 transform hover:scale-[1.01] active:scale-95"
               >
-                <MessageSquare className="w-5 h-5 fill-slate-950" />
+                <WhatsAppIcon className="w-5 h-5 text-slate-950" />
                 <span>Enviar Pedido a WhatsApp</span>
                 <ArrowRight className="w-4 h-4" />
               </button>

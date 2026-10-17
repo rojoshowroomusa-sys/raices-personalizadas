@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Check, Coffee, Gift, Heart, MessageCircle, Palette, Sparkles } from 'lucide-react';
+import { ArrowLeft, Check, Coffee, Gift, Heart, Palette, Sparkles } from 'lucide-react';
 import tazaImagen from '../assets/images/tazas_personalizadas_referencia.jpg';
 import { PRODUCT_LINES } from '../data/products';
 import { ProductConfigModal } from './ProductConfigModal';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface MugsPageProps {
   darkMode: boolean;
@@ -77,7 +78,7 @@ export const MugsPage: React.FC<MugsPageProps> = ({ darkMode }) => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 rounded-2xl border border-emerald-400/40 bg-emerald-500/10 px-6 py-4 text-sm font-extrabold text-emerald-400 transition hover:bg-emerald-500 hover:text-black"
                 >
-                  <MessageCircle className="h-5 w-5" />
+                  <WhatsAppIcon className="h-5 w-5" />
                   Consultar por WhatsApp
                 </a>
               </div>

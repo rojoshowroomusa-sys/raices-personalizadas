@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Sparkles, Printer, MessageCircle, Menu, X, Sun, Moon, ShoppingBag } from 'lucide-react';
+import { Sparkles, Printer, Menu, X, Sun, Moon, ShoppingBag } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface NavbarProps {
   darkMode: boolean;
@@ -147,7 +148,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-emerald-500 text-black font-extrabold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm shadow-md hover:shadow-emerald-500/30 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 whitespace-nowrap"
             >
-              <MessageCircle className="w-4 h-4 fill-black text-black" />
+              <WhatsAppIcon className="w-4 h-4 text-black" />
               <span className="hidden sm:inline font-mono">221 626 8594</span>
               <span className="sm:hidden font-mono text-xs">WhatsApp</span>
             </a>
@@ -212,7 +213,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] text-black font-extrabold py-3 rounded-xl text-sm"
               >
-                <MessageCircle className="w-4 h-4 fill-black" />
+                <WhatsAppIcon className="w-4 h-4 text-black" />
                 <span>Escríbenos al WhatsApp</span>
               </a>
             </div>

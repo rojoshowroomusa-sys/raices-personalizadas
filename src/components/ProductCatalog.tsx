@@ -6,7 +6,6 @@ import {
   Coffee,
   ShoppingBag,
   Sparkles,
-  MessageSquare,
   ShieldCheck,
   Shield,
   Layers,
@@ -28,6 +27,7 @@ import { PRODUCT_LINES } from '../data/products';
 import { ProductLine } from '../types';
 import { ProductConfigModal } from './ProductConfigModal';
 import { formatPriceARS } from '../context/CartContext';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface ProductCatalogProps {
   darkMode: boolean;
@@ -354,7 +354,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({ darkMode, onOpen
                       rel="noopener noreferrer"
                       className="flex-1 py-2.5 px-3 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366] text-[#25D366] hover:text-black font-extrabold text-[11px] uppercase tracking-wider text-center transition-all flex items-center justify-center gap-1.5 border border-[#25D366]/30"
                     >
-                      <MessageSquare className="w-3.5 h-3.5" />
+                      <WhatsAppIcon className="w-3.5 h-3.5" />
                       <span>WhatsApp Directo</span>
                     </a>
 

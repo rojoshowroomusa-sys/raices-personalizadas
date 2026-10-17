@@ -1,5 +1,6 @@
 import React from 'react';
-import { MessageCircle, Phone, Instagram, Facebook, Sparkles } from 'lucide-react';
+import { Phone, Instagram, Facebook, Sparkles } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface FooterProps {
   darkMode: boolean;
@@ -41,7 +42,7 @@ export const Footer: React.FC<FooterProps> = ({ darkMode, isDetailPage = false }
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-8 py-4 bg-[#FACC15] hover:bg-[#EAB308] text-black font-extrabold text-base rounded-full shadow-glow-yellow transition-all transform hover:scale-105"
             >
-              <MessageCircle className="w-5 h-5 fill-black text-black" />
+              <WhatsAppIcon className="w-5 h-5 text-black" />
               <span>Chatear ahora al 221 626 8594</span>
             </a>
 

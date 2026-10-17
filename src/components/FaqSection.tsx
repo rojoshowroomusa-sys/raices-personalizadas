@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { HelpCircle, Plus, Minus, MessageCircle, PhoneCall } from 'lucide-react';
+import { HelpCircle, Plus, Minus, PhoneCall } from 'lucide-react';
 import { FAQ_ITEMS } from '../data/products';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface FaqSectionProps {
   darkMode: boolean;
@@ -136,7 +137,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ darkMode }) => {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-emerald-500 text-black font-extrabold px-6 py-3 rounded-full text-xs uppercase tracking-wider shadow-lg transition-transform hover:scale-105 shrink-0"
           >
-            <MessageCircle className="w-4 h-4 fill-black text-black" />
+            <WhatsAppIcon className="w-4 h-4 text-black" />
             <span>Chatear con un Asesor (221 626 8594)</span>
           </a>
         </div>

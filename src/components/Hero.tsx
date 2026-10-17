@@ -1,6 +1,7 @@
 import React from 'react';
-import { Flame, Layers, CheckCircle, Award, Palette, Shirt, Headphones, Sparkles, Briefcase, MessageCircle, Truck } from 'lucide-react';
+import { Flame, Layers, CheckCircle, Award, Palette, Shirt, Headphones, Sparkles, Briefcase, Truck } from 'lucide-react';
 import { HERO_SHOWCASE_IMG, PILLARS } from '../data/products';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface HeroProps {
   darkMode: boolean;
@@ -123,7 +124,7 @@ export const Hero: React.FC<HeroProps> = ({ darkMode }) => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-[#25D366] hover:bg-emerald-500 text-slate-950 font-extrabold text-sm sm:text-base rounded-xl shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
               >
-                <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 fill-slate-950" />
+                <WhatsAppIcon className="w-4 h-4 sm:w-5 sm:h-5 text-slate-950" />
                 <span>ESCRIBIR AL WHATSAPP</span>
               </a>
             </div>

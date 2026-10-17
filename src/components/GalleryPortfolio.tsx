@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
-import { Camera, MessageCircle, Eye, Sparkles, Search, Star, Layers, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { Camera, Eye, Sparkles, Search, Star, Layers, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { PORTFOLIO_ITEMS } from '../data/products';
 import { LightboxModal } from './LightboxModal';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface GalleryPortfolioProps {
   darkMode: boolean;
@@ -275,7 +276,7 @@ export const GalleryPortfolio: React.FC<GalleryPortfolioProps> = ({ darkMode }) 
                       rel="noopener noreferrer"
                       className="py-2 px-3 rounded-xl bg-[#25D366] hover:bg-emerald-400 text-slate-950 font-bold text-xs uppercase tracking-wider text-center transition-all flex items-center justify-center gap-1.5 shadow-sm"
                     >
-                      <MessageCircle className="w-3.5 h-3.5 fill-slate-950" />
+                      <WhatsAppIcon className="w-3.5 h-3.5 text-slate-950" />
                       <span>Consultar</span>
                     </a>
                   </div>

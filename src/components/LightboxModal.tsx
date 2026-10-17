@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { X, ZoomIn, ZoomOut, RotateCcw, ChevronLeft, ChevronRight, MessageCircle } from 'lucide-react';
+import { X, ZoomIn, ZoomOut, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
 import { PortfolioItem } from '../types';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface LightboxModalProps {
   items: PortfolioItem[];
@@ -179,7 +180,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
             rel="noopener noreferrer"
             className="px-5 py-2.5 rounded-full bg-[#25D366] hover:bg-emerald-500 text-slate-950 font-extrabold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg transition-transform hover:scale-105"
           >
-            <MessageCircle className="w-4 h-4 fill-slate-950 text-slate-950" />
+            <WhatsAppIcon className="w-4 h-4 text-slate-950" />
             <span>Preguntar por este estilo</span>
           </a>
         </div>

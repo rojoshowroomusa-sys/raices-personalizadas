@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageCircle, X, Send, Sparkles, Clock, CheckCheck, Shirt, Scissors, Coffee, ShoppingBag, Truck, Gift } from 'lucide-react';
+import { X, Send, Sparkles, Clock, CheckCheck, Shirt, Scissors, Coffee, ShoppingBag, Truck, Gift } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface FloatingWhatsAppButtonProps {
   darkMode?: boolean;
@@ -77,7 +78,7 @@ export const FloatingWhatsAppButton: React.FC<FloatingWhatsAppButtonProps> = ({ 
             <div className="flex items-center gap-3">
               <div className="relative">
                 <div className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-[#FACC15] shadow-md border-2 border-white">
-                  <MessageCircle className="w-5 h-5 fill-[#25D366] text-[#25D366]" />
+                  <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
                 </div>
                 <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-slate-900 rounded-full" />
               </div>
@@ -246,11 +247,11 @@ export const FloatingWhatsAppButton: React.FC<FloatingWhatsAppButtonProps> = ({ 
         {/* Pulsing ambient halo effect */}
         <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-70 animate-ping pointer-events-none -z-10" />
 
-        {/* Dynamic Icon Toggle: MessageCircle or Close X */}
+        {/* Dynamic Icon Toggle: WhatsApp or Close */}
         {isOpen ? (
           <X className="w-7 h-7 sm:w-8 sm:h-8 text-slate-950 transition-transform duration-200 rotate-90 animate-in" />
         ) : (
-          <MessageCircle className="w-7 h-7 sm:w-8 sm:h-8 fill-slate-950 text-slate-950 transition-transform duration-200 group-hover:rotate-12" />
+          <WhatsAppIcon className="w-7 h-7 sm:w-8 sm:h-8 text-white transition-transform duration-200 group-hover:rotate-12" />
         )}
 
         {/* Small Notification Dot / Badge */}
