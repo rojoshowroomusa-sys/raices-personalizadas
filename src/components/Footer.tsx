@@ -166,8 +166,13 @@ export const Footer: React.FC<FooterProps> = ({ darkMode, isDetailPage = false }
                   </a>
                 </li>
                 <li>
-                  <a href="/placas-aluminio-personalizadas" className="hover:text-yellow-400 transition-colors">
-                    Placas de aluminio sublimable
+                  <a href="/gorras-personalizadas" className="hover:text-yellow-400 transition-colors">
+                    Gorras personalizadas y bordadas
+                  </a>
+                </li>
+                <li>
+                  <a href="/remeras-personalizadas" className="hover:text-yellow-400 transition-colors">
+                    Remeras Personalizadas
                   </a>
                 </li>
                 <li>

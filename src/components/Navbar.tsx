@@ -25,6 +25,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { label: 'Contacto', href: `${isDetailPage ? '/' : ''}#contacto` },
     { label: 'Talles', href: '/tabla-de-talles' },
     { label: 'Placas', href: '/placas-aluminio-personalizadas' },
+    { label: 'Gorras', href: '/gorras-personalizadas' },
   ];
 
   return (

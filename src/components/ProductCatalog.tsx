@@ -34,6 +34,7 @@ interface ProductCatalogProps {
   onOpenMugsPage: () => void;
   onOpenShirtsPage: () => void;
   onOpenAluminumPlatesPage: () => void;
+  onOpenCapsPage: () => void;
 }
 
 export const ProductCatalog: React.FC<ProductCatalogProps> = ({
@@ -41,6 +42,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
   onOpenMugsPage,
   onOpenShirtsPage,
   onOpenAluminumPlatesPage,
+  onOpenCapsPage,
 }) => {
   const [selectedFilter, setSelectedFilter] = useState<string>('todos');
   const [configProduct, setConfigProduct] = useState<ProductLine | null>(null);
@@ -377,6 +379,20 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                     >
                       <Info className="w-3.5 h-3.5" />
                       <span>Conocé las placas sublimables</span>
+                    </button>
+                  )}
+                  {prod.id === 'gorras' && (
+                    <button
+                      type="button"
+                      onClick={onOpenCapsPage}
+                      className={`w-full py-2.5 px-4 rounded-xl border font-extrabold text-[11px] uppercase tracking-wider flex items-center justify-center gap-2 transition-colors ${
+                        darkMode
+                          ? 'border-pink-400/40 text-pink-300 hover:bg-pink-400/10'
+                          : 'border-pink-300 text-pink-700 hover:bg-pink-50'
+                      }`}
+                    >
+                      <Info className="w-3.5 h-3.5" />
+                      <span>Diseñá tu gorra</span>
                     </button>
                   )}
 
