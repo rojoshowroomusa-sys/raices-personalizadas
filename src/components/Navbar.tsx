@@ -23,6 +23,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { label: 'Ideal Para', href: `${isDetailPage ? '/' : ''}#para-quien` },
     { label: 'Preguntas Frecuentes', href: `${isDetailPage ? '/' : ''}#faq` },
     { label: 'Contacto', href: `${isDetailPage ? '/' : ''}#contacto` },
+    { label: 'Talles', href: '/tabla-de-talles' },
   ];
 
   return (

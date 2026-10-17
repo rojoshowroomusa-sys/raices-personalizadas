@@ -161,8 +161,8 @@ export const Footer: React.FC<FooterProps> = ({ darkMode, isDetailPage = false }
                   </a>
                 </li>
                 <li>
-                  <a href="/remeras-personalizadas" className="hover:text-yellow-400 transition-colors">
-                    Remeras Personalizadas
+                  <a href="/tabla-de-talles" className="hover:text-yellow-400 transition-colors">
+                    Tablas de talles de indumentaria
                   </a>
                 </li>
                 <li>

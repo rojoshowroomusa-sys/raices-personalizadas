@@ -9,6 +9,7 @@ import { Hero } from './components/Hero';
 import { ProductCatalog } from './components/ProductCatalog';
 import { MugsPage } from './components/MugsPage';
 import { ShirtsPage } from './components/ShirtsPage';
+import { SizeChartsPage } from './components/SizeChartsPage';
 import { ShippingNationwide } from './components/ShippingNationwide';
 import { AudienceSegments } from './components/AudienceSegments';
 import { FaqSection } from './components/FaqSection';
@@ -17,12 +18,13 @@ import { FloatingWhatsAppButton } from './components/FloatingWhatsAppButton';
 import { CartDrawer } from './components/CartDrawer';
 import { CartProvider } from './context/CartContext';
 
-type DetailPage = 'mugs' | 'shirts' | null;
+type DetailPage = 'mugs' | 'shirts' | 'sizeCharts' | null;
 
 const getDetailPage = (): DetailPage => {
   const pathname = window.location.pathname.replace(/\/+$/, '') || '/';
   if (pathname === '/tazas-personalizadas') return 'mugs';
   if (pathname === '/remeras-personalizadas') return 'shirts';
+  if (pathname === '/tabla-de-talles') return 'sizeCharts';
   return null;
 };
 
@@ -65,6 +67,8 @@ export default function App() {
       document.title = 'Remeras Personalizadas | Raíces Personalizaciones';
     } else if (detailPage === 'mugs') {
       document.title = 'Tazas Personalizadas | Raíces Personalizaciones';
+    } else if (detailPage === 'sizeCharts') {
+      document.title = 'Tablas de Talles | Raíces Personalizaciones';
     } else {
       document.title =
         'Raíces Personalizaciones | Crea • Imprime • Impacta | Catálogo de Productos Personalizados';
@@ -91,6 +95,8 @@ export default function App() {
             <MugsPage darkMode={darkMode} />
           ) : detailPage === 'shirts' ? (
             <ShirtsPage darkMode={darkMode} />
+          ) : detailPage === 'sizeCharts' ? (
+            <SizeChartsPage darkMode={darkMode} />
           ) : (
             <>
               {/* Hero Banner & 4 Pillars Strip */}

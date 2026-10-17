@@ -223,6 +223,13 @@ export const ShirtsPage: React.FC<ShirtsPageProps> = ({ darkMode }) => {
                   <p className={`mt-3 text-[11px] leading-relaxed ${muted}`}>
                     Consultanos para confirmar las medidas exactas y la disponibilidad del talle que necesitás.
                   </p>
+                  <a
+                    href="/tabla-de-talles"
+                    className="mt-4 inline-flex items-center gap-2 text-xs font-extrabold text-sky-400 transition-colors hover:text-sky-300"
+                  >
+                    Ver todas las tablas de indumentaria
+                    <span aria-hidden="true">→</span>
+                  </a>
                 </div>
               )}
             </div>
